@@ -1,0 +1,105 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Set Collection </title>
+    <!-- 2장 ECMAScript6 9. Set 컬렉션 타입 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+        1. Set 객체 생성
+    */
+    let fruitSet = new Set();
+
+    /*
+    (출력 형식)
+        Set(0)
+        [[Entries]]
+            No properties
+        size : 0
+    */
+    console.log(fruitSet); // 빈 Set
+    console.log(fruitSet.size); //0
+    fruitSet = new Set(["사과","바나나"]);
+
+    /*
+    (출력 형식)
+        Set(2) {"사과", "바나나"}
+        [[Entries]]
+            0: "사과"
+            1: "바나나"
+        size: 2
+    */
+    console.log(fruitSet); // 초기데이터 있는 Set
+    console.log(fruitSet.size); //2
+
+    /*
+        2. Set 데이터 추가, 데이터 읽기, 데이터 존재 여부 확인, 데이터 삭제
+    */
+    fruitSet.add("메론");
+    fruitSet.add("기차");
+
+    console.log(fruitSet, fruitSet.size); // Set(4) {...} 4
+
+    console.log("기차가 있나요 => " + fruitSet.has("기차")); //true
+    console.log("자동차가 있나요 => " + fruitSet.has("자동차")); //false
+
+    fruitSet.delete("기차") // 기차 지우기
+    console.log("기차가 있나요 => " + fruitSet.has("기차")); //false
+
+    /*
+        3. 전체 단위 데이터 확인 및 함수 처리
+    */
+
+    // 모든 키 값 열거(실질적으로 데이터 보는 것과 동일) <= map와 동일한 로직임(values도 가능!)
+    var keyIter = fruitSet.keys()
+
+    for(var key of keyIter){
+        console.log(key);
+    }
+
+    // 모든 데이터 보기
+    for (var fruit of fruitSet) {
+        console.log(fruit)
+    }
+
+    // 모든 데이터 함수 처리
+    // Set의 특수 함수 특정 Set(fruitSet)에 대하여 value, key, map값을 순차적으로 처리
+    fruitSet.forEach(function (value, value2, map) {
+        console.log(value, " : ", value2);
+    });// key, value가 일치하는 map 데이터
+
+    /*
+        4. 모든 데이터 삭제
+    */
+    fruitSet.clear();
+
+    console.log(fruitSet);// 삭제 후 모습
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>
