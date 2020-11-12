@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Shorten Expression </title>
+    <!-- 2장 ECMAScript6 15. 객체 속성 생략 지정 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+       1. 객체 리터럴
+    */
+    
+    // 일반 프로퍼티형
+    let coffee = {
+        name : "아메리카노",
+        price : 4300
+    }
+    console.log(coffee.name,":",coffee.price);
+
+    // 문자열 프로퍼티형
+    coffee = {
+        "name": "카페라테",
+        "price": 4700
+    }
+    console.log(coffee.name, ":", coffee.price);
+
+
+    // 변수열 프로퍼티형
+    let key1 = "name";
+    let key2 = "price";
+
+        // Bad Case
+    coffee = {
+        key1 : "카페라테",
+        key2 : 4700
+    }
+    console.log(coffee.name, ":", coffee.price); //X
+    console.log(coffee.key1, ":", coffee.key2); //O
+
+        // Good Case
+    coffee = {
+        [key1]: "카페라테",
+        [key2]: 4700
+    }
+    console.log(coffee.name, ":", coffee.price); //O
+    console.log(coffee.key1, ":", coffee.key2); //X
+
+    /*
+        2. 객체 속성 생략 지정
+    */
+    let name = "바닐라라테";
+    let price = 6300;
+
+    coffee = {name, price}// 변수 이름이 값으므로 생략함
+    console.log(coffee.name, ":", coffee.price);
+
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>

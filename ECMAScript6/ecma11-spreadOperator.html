@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Spread Operator </title>
+    <!-- 2장 ECMAScript6 14. 전개 연산자 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+        전개 연산자는 반복 가능한 객체를 반환하는 표현식 앞에 표기한다.
+    */
+    
+    // 배열 리터럴 전개(배열 확장)
+    const colorArray = ["red", "green", "blue"];
+    const newColorArray = ["yellow",...colorArray, "orange"];
+    console.log(newColorArray);
+
+    // 함수, 인수 목록 전개(요소 추출)
+    function myPrint(a, b, c){
+        console.log(a)
+        console.log(b)
+        console.log(c)
+    }
+    const stringArray = [..."abcxyz"];
+    console.log(stringArray);// 배열로 출력
+    myPrint(...stringArray); // 순차대로 인수만큼만 사용!
+
+    // 배열 연결
+    const array = ["a","p","p"];
+    array.push(... ["l","e"]);
+
+    console.log(...array); // a p p l e(요소로 출력)
+
+    // 배열 최대최소값 출력
+    const numArr = [3, 54, 2, -1, 4];
+    console.log("max =",Math.max(... numArr));
+    console.log("min =", Math.min(...numArr));
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>

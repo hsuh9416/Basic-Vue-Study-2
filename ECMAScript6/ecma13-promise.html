@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Promise </title>
+    <!-- 2장 ECMAScript6 16. 프로미스 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+       1. 프로미스(Promise)란?
+        => 비동기 처리를 추상화한 객체를 말하며, 비동기 처리를 조작하는 방법을 제공한다.
+        =>
+
+    */
+
+
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>
