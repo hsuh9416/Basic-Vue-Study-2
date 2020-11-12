@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - 화살표함수 </title>
+    <!-- 2장 ECMAScript6 5. 화살표함수 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+     1. 매개 변수가 없는 형식
+    */
+    const af = () => {
+        return "100"
+    };
+    // console.log(af); * 함수를 변수에 정의하였기 때문에 이 실행문의 결과창은 변수에 할당한 함수의 전체 구조가 된다. cf. 자바 등 => 애당초 할당 불가능!
+    console.log(af()); // 리턴 값만 출력하는 경우
+    
+    /*
+     2. 매개 변수가 하나 있는 형식(괄호 생략하고 매개 변수 하나만 기재 가능)
+    */
+    const af2 = a => {
+        return 150 + a
+    };
+    console.log(af2(15));//165
+    
+    /*
+     3. 매개 변수가 2개 이상 있는 형식(괄호 생략 불가능)
+    */
+    const af3 = ( a, b ) => {
+        return a+"는 "+b+"와 같지 않습니다!!"
+    };
+    console.log(af3("영수","영희"));//영수는 영희와 같지 않습니다!!
+
+    /*
+     4. this의 활용 
+        1) 중첩함수 this는 전역 객체를 가리킨다.
+    */
+    const calc1 = {
+        firstNumber : 100,
+        secondNumber : 20,
+        print : function(){
+            console.log(this);// calc 객체를 가르킴 => { firstNumber : 100, ... }
+            function add() {
+                console.log(this); // this는 전역 객체를 가리킴 => Window { ... , App : Vue {...} , ... }
+
+                return this.firstNumber + this.secondNumber;// 전역 객체이므로 정의되어 있지 않음.
+            }
+            console.log(this.firstNumber + " + " + this.secondNumber + " = " + add());
+        }
+    }
+    calc1.print();
+    
+    /*
+        2) 메서드 this를 지역변수에 할당하여 하위 블록에서 this 값을 보존시킬 수 있다.
+    */
+    const calc2 = {
+        firstNumber: 100,
+        secondNumber: 20,
+        print: function () {
+            let self = this; // calc 객체를 가르키고 지역변수 self에 할당함
+            function add() {
+                console.log(self); // self는 보전된 calc 객체
+
+                return self.firstNumber + self.secondNumber; // calc 객체이므로 정상 출력! 
+            }
+            console.log(this.firstNumber + " + " + this.secondNumber + " = " + add());           
+        }
+    }
+    calc2.print();
+
+    /*
+        3) 화살표함수 this를 메서드 정의할 때의 calc 객체로 고정시킨다.
+    */
+    const calc3 = {
+        firstNumber: 100,
+        secondNumber: 20,
+        print: function () {
+            const add = () => {
+                // 화살표함수 표현식은 this를 함수를 정의할 때의 calc객체로 고정시킨다.
+                console.log(this); 
+
+                return this.firstNumber + this.secondNumber; // 함수가 성립되기 전에 calc 객체로부터 확인된 값
+            }
+            console.log(this.firstNumber + " + " + this.secondNumber + " = " + add());
+        }
+    }
+    calc3.print();// 2)와 결과가 같다.
+
+
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>

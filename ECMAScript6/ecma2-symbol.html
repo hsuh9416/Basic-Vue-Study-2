@@ -1,0 +1,98 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Symbol 타입 </title>
+    <!-- 2장 ECMAScript6 4. Symbol 타입 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+     심볼은 자기 자신을 제외한 그 어떤 값과도 다른 유일무이한 값이다.
+    */
+    const LINE = Symbol('draw');
+    const RECTANGLE = Symbol('draw');
+
+    if(LINE === RECTANGLE){
+        console.log("LINE === RECTANGLE");
+    }
+    else{
+        console.log("LINE !== RECTANGLE");
+    } // 동일한 형식의 심볼 함수지만 다른 것으로 취급
+
+    // toString을 사용하는 경우
+    console.log(LINE);
+    console.log(LINE.toString()); // Symbol(draw)
+    console.log(RECTANGLE.toString());  
+    if (LINE.toString() === RECTANGLE.toString()) {
+        console.log("LINE === RECTANGLE");
+    }
+    else {
+        console.log("LINE !== RECTANGLE");
+    } // 같은 것으로 나옴 cf. JAVA 등의 string 변수
+
+    /**/
+    const TRIANGLE = 3;
+    const CIRCLE = 0;
+
+    console.log(TRIANGLE); //3
+    console.log(CIRCLE); //0
+
+    let shape = TRIANGLE;
+
+    if(shape === TRIANGLE){
+        console.log("shape === TRIANGLE");
+    } else{
+        console.log("shape !== TRIANGLE");     
+    }//shape === TRIANGLE
+
+    // 정의한 상수값과 같은 숫자값을 사용하여도 문제가 없음
+    // 의미없는 숫자값을 사용하면 코드해석에 문제가 있다.
+    shape = CIRCLE;
+    if(shape === 0) {
+        console.log("shape === CIRCLE");
+    } else {
+        console.log("shape !== CIRCLE");
+    }//shape === CIRCLE
+
+    const VAR1 = Symbol("var1");
+    const VAR2 = Symbol("var2");
+    console.log(VAR1.toString(),VAR2.toString());
+    // Symbol("var1") Symbol("var2")
+
+    let varType = VAR1;
+    
+    // 정의한 심볼값만 비교 가능(or toString로 비교)
+    if(varType === VAR1){
+        console.log("varType === VAR1");
+    }
+    else{
+        console.log("varType !== VAR1");
+    }
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>
