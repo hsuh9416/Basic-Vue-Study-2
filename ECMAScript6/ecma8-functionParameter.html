@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title> ECMAScript6 - Function Parameter </title>
+    <!-- 2장 ECMAScript6 10. 함수 매개변수 -->
+</head>
+
+<body>
+    <div> </div>
+    <div id="app">
+        <div>
+            <button @click="valueSwitching"> var로 값 전환</button>
+        </div>
+        <div>
+            현재 숫자 = {{valueSwitched ? 10 : 15}}
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+    /*
+        1. 나머지 매개변수(...)
+    */
+    function add(a, b, ... args){ // args 단독으로 사용할 수도 있음. 
+        
+        console.log(a, b, args)
+
+        let sum = a + b;
+
+        for(let i = 0; i<args.length; i++){
+            sum += args[i];
+        }
+        return sum;
+    }
+
+    let sum = add(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+    console.log(sum); //55
+
+    /*
+        2. 기본값 설정
+    */
+    function add2(a, b=10, c){
+        console.log("a = " + a); // a = 1
+        console.log("b = " + b); // b = 1
+        console.log("c = " + c); // c = undefined
+
+        return a + b;
+    }
+
+    // 입력된 값부터 순차적으로 결정
+    console.log(add2(1)); // a에만 1 할당(b는 기본값)
+    console.log(add2(2,3)); // a에 2, b에 3 할당
+    console.log(add2(2, 3, 5)); // 전부 할당됨
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            message: "Hello",
+            valueSwitched: false
+        },
+        methods: {
+            valueSwitching: function () {
+                this.valueSwitched = this.valueSwitched ? false : true;
+            }
+        }
+    }); 
+</script>
+
+</html>
