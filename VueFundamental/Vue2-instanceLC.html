@@ -1,0 +1,35 @@
+<html>
+
+<head>
+    <title> Vue2 - Instance Life Cycle</title>
+    <!-- 3장 Vue.js 기본 3. 인스턴스 라이프 사이클 -->
+</head>
+
+<body>
+    <div id="vue-cycle">{{ message }}</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+
+    /*
+        인스턴스 라이프 사이클
+    */
+
+    new Vue({
+        el: "#vue-cycle",
+        data: {
+            message: "인스턴스 사이클 알아보기" // 다른 인스턴스는 값은 prop 사용 가능
+        },
+        beforeCreate: () => console.log("beforeCreate : 이벤트 & 라이프 사이클 초기화 O, 주입 & 반응성 초기화 X => data/method 접근 X"),
+        created: () => console.log("created : 주입 & 반응성 초기화 O, 템플릿 컴파일 & data mount X => data/method 접근 O"),
+        beforeMount: () => console.log("beforeMount : 템플릿 컴파일 O, data mount X"),
+        mounted: () => console.log("mounted : data mount O (1차 완료)"),
+        beforeUpdate: () => console.log("beforeUpdate : 데이터 변경 O, DOM 적용 X => 재렌더링 직전"),
+        updated: () => console.log("updated : DOM 적용 O (2차 완료) => 재렌더링 직후"),
+        beforeDestroy: () => console.log("beforeDestroy : destroy 요청이 도착했지만 해당 요청이 수행되기 전 단계 => 인스턴스 데이터 삭제 가능 단계"),
+        destroyed: () => console.log("destroyed : 인스턴스가 최종적으로 제거됨")
+
+    });
+</script>
+
+</html>
