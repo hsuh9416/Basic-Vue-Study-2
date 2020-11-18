@@ -2,39 +2,121 @@
 
 <head>
     <title> Vue3 - Vue Preperty 2 </title>
-    <!-- 3장 Vue.js 기본 9. 필터 ~ -->
+    <!-- 3장 Vue.js 기본 9. 필터 ~ 10. 디렉티브 -->
 </head>
 
 <body>
     <div id="app">
         <div>
-            <ui>
-                <li v-for="item in items" v:bind:key="item.name"></li>
-                <ll>합계 {{totalPrice}} 원</ll>
-            </ui>
+            <ul>
+                <li  v-for="item in items" v:bind:key="item.name">
+                    {{ item.name }} 의 가격 :
+                    <input type="text" v-on:input="item.price = $event.target.value" v-bind:value="item.price">
+                </li>
+                <li v-for="item in items" v:bind:key="item.name">
+                    {{ item.name }} : 
+                    {{ item.price | numberWithDelimiter}} 
+                    원 X 
+                    {{ item.quantity }} 개 
+                    = {{ item.price*item.quantity | numberWithDelimiter}} 원
+                </li>
+                <li>합계 {{totalPrice | numberWithDelimiter}} 원</li>
+            </ul>
         </div>
+    </div>
+    <div id="directive">
+        <form>
+            <table>
+                <tr>
+                    <td>사용자 아이디</td>
+                    <td>{{ userId }}</td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td><input type="password" v-bind:value="userPw"/></td>
+                </tr>
+                <tr>
+                    <td>소개</td>
+                    <td><textarea row="5" v-bind:value="introduction"></textarea></td>
+                </tr>                
+                <tr>
+                    <td>직업</td>
+                    <td>
+                        <span v-if="alien"><em>외계인</em> 입니다.</span>
+                        <span v-if="developer"><em>개발자</em> 입니다.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>외국인 여부</td>
+                    <td>
+                        <span v-show="foreigner === 'yes'"><em>외국인</em> 입니다.</span>
+                        <span v-show="foreigner !== 'yes'"><em>내국인</em> 입니다.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>취미</td>
+                    <td>
+                        <ul>
+                            <li v-for="hobby in hobbyList">{{ hobby }}</li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        <span v-if="gender === 'male'">남자</span>
+                        <span v-else>여자</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>국적</td>
+                    <td>
+                        <select v-bind:value="nationality">
+                            <option disabled value="">=== 선택 ===</option>
+                            <option value=1>한국</option>
+                            <option value=2>독일</option>
+                            <option value=3>호주</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>국적</td>
+                    <td>
+                        {{ getNationality }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>소유차량</td>
+                    <td>
+                        <select v-model="carList" multiple>
+                            <option>현대</option>
+                            <option>기아</option>
+                            <option>렉서스</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <button type="submit">등록</button>
+            </p>
+        </form>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 <script type="text/javascript">
 
     /*
-        1. Array.prototype.reduce()
-            => 배열의 요소들을 다 돌면서 각 요소들을 모두 합성하는 메소드
-            => [형식] arr.reduce((acc, item, index, array) => {},init)
-                acc: 누적된 값을 의미 
-                item : 배열의 각 요소 
-                index : 배열 요소의 인덱스 
-                array : reduce함수가 적용되고 있는 배열을 의미
-                init : 누적값의 초기값
+        1. filter
+        => 텍스트 포맷 등을 위해 초기에 Vue의 생성자 옵션 객체에 함수로 정의
+        => {{}} 문법과 |(파이프) 연산자를 조합해 사용한다. (왼편이 인자 오른편이 필터 이름)
     */
 
-    var arr = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-    var arr2 = arr.reduce((acc, item, index, array) => {
-        console.log("현재 idx=",index,"현재 idx의 값=", array[index]); // index 배열을 돌면서 증가, array는 연산 중인 배열의 이명 
-        return acc += item;
-    }, 0);
-    console.log("arr의 합계 = ",  arr2);
+    /*
+        2. Directive
+        => Vue의 독자적 Dom 조작식 또는 속성
+        => v-model은 폼에 입력한 값을 뷰 인스턴스의 데이터와 즉시 동기화(양방향)하며, input, select, textarea에서만 사용 가능하다.
+
+    */
 
 
     var itemList = [
@@ -60,15 +142,48 @@
         data: {
             items: itemList
         },
-        computed : {
-            totalPrice : function(){
-                return this.items.reduce((sum, item) =>{
-                    return sum + (item.price*item.quantity);
-                }, 0)
+        filters:{
+            numberWithDelimiter : value => {
+                if (!value) {
+                    return '0'
+                }
+                return value.toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,')
+            }
+        },
+        computed:{
+            totalPrice: function(){
+                return this.items.reduce(function(sum,item){
+                    return sum + (item.price*item.quantity)
+                },0)
             }
         }
     });
 
+    var Directive = new Vue({
+        el : '#directive',
+        data : {
+            userId : '또치',
+            userPw : '1111',
+            introduction : '하이',
+            alien: true,
+            developer : false,
+            foreigner : 'no',
+            hobbyList : ['Sports','Booling','Magic'],
+            gender : 'female',
+            nationality : 1,
+            carList : ['현대','기아']
+        },
+        computed : {
+            getNationality: function(){
+                switch(this.nationality){
+                    case 1 : return 'Korea'
+                    case 2 : return 'Germany'
+                    case 3 : return 'Australia'
+                    default : return 'outer space' 
+                }
+            }
+        }
+    });
 
 </script>
 

@@ -1,0 +1,180 @@
+<html>
+
+<head>
+    <title> Vue3 - Vue Component Communication </title>
+    <!-- 3장 Vue.js 기본 14. 컴포넌트 통신 -->
+</head>
+
+<body>
+    <!-- <div id="app1">
+        <item-input1 v-bind:items="items"></item-input1>
+        <hr>
+        <item-list1 v-bind:items="items"></item-list1>
+    </div> -->
+
+    <div id="app2">
+        <ul>
+            <li v-for="(item, index) in items" v-bind:key="item.name">
+                <item-input2 
+                    v-bind:item-name="item.name"
+                    v-bind:item-price="item.price"
+                    v-bind:item-index="index"
+                    v-on:change-price="onChangePrice"
+                ></item-input2>
+            </li> 
+        </ul>
+        <hr>
+        <item-list2 v-bind:items="items"></item-list2>
+    </div>
+</body>
+
+<!-- 
+
+-->
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+
+    /*
+        component communication
+        => 각 컴포넌트는 독립적이므로 값을 주고 받을 수 있다.
+
+    */
+    //=========================[ 공통 변수 ]===================================
+    var items = [
+        {
+            name: 'CPU',
+            price: 462984,
+            quantity: 1
+        },
+        {
+            name: '메인보드',
+            price: 112053,
+            quantity: 1
+        },
+        {
+            name: '메모리',
+            price: 79608,
+            quantity: 2
+        }
+    ]
+
+
+
+    //===========================[ 사례 1 ]====================================
+
+    //지역 컴포넌트 1
+    var ItemInput1 = {
+        props: ['items'],
+        template:
+        `
+            <ul>
+                <li v-for="item in items" v:bind:key="item.name">
+                    {{ item.name }} 의 가격 :
+                    <input type="text" v-on:input="item.price = $event.target.value" v-bind:value="item.price">
+                </li>
+            </ul>
+        `
+    };
+
+    //지역 컴포넌트 2
+    var ItemList1 = {
+        props: ['items'],
+        template:
+            `
+            <div>
+                <p>지역 컴포넌트 입니다</p>
+                <ul>
+                    <li v-for="item in items" v:bind:key="item.name">
+                        {{ item.name }} : {{ item.price }} 원 X {{ item.quantity }} 개 = {{ item.price*item.quantity }} 원
+                    </li>
+                </ul>
+                <p>합계 {{totalPrice}} 원</p>
+            </div>
+            `,
+        computed: {
+            totalPrice: function () {
+                return this.items.reduce(function (sum, item) {
+                    return sum + (item.price * item.quantity)
+                }, 0)
+            }
+        }
+    };
+
+    // var App1 = new Vue({
+    //     el: '#app1',
+    //     data: {
+    //         items: items
+    //     },
+    //     // 지역 컴포넌트 등록
+    //     components: {
+    //         'item-list1' : ItemList1,
+    //         'item-input1' : ItemInput1
+    //     }
+    // });
+
+    //===========================[ 사례 2 ]====================================
+
+    //지역 컴포넌트 1
+    var ItemInput2 = {
+        props: ['itemName','itemPrice','itemIndex'],
+        template:
+        `
+        <div>{{ itemName }}의 가격: <input type="text" v-on:input="changePrice" v-bind:value="itemPrice"/></div> 
+        `,
+        methods:{
+            changePrice(event){
+                const newPrice = event.target.value;
+                console.log('newPrice :',newPrice);
+                // 이벤트 발생
+                this.$emit('change-price', newPrice, this.itemIndex);
+            }
+        }
+    };
+
+    //지역 컴포넌트 2
+    var ItemList2 = {
+        props: ['items'],
+        template:
+            `
+            <div>
+                <p>지역 컴포넌트 입니다</p>
+                <ul>
+                    <li v-for="item in items" v:bind:key="item.name">
+                        {{ item.name }} : {{ item.price }} 원 X {{ item.quantity }} 개 = {{ item.price*item.quantity }} 원
+                    </li>
+                </ul>
+                <p>합계 {{totalPrice}} 원</p>
+            </div>
+            `,
+        computed: {
+            totalPrice: function () {
+                return this.items.reduce(function (sum, item) {
+                    return sum + (item.price * item.quantity)
+                }, 0)
+            }
+        }
+    };
+
+    var App2 = new Vue({
+        el: '#app2',
+        data: {
+            items: items // 별도 mapping 지시 없어도 할당할 수 있는 성질 이용
+        },
+        // 지역 컴포넌트 등록
+        components: {
+            'item-list2': ItemList2,
+            'item-input2': ItemInput2
+        },
+        methods : {
+            onChangePrice(newPrice, index){
+                console.log('onChangingPrice newPrice :', newPrice);
+                console.log('onChangePrice index :', index);
+
+                this.items[index].price = newPrice;
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,169 @@
+<html>
+
+<head>
+    <title> Vue3 - Event Handling(& Form Binding) </title>
+    <!-- 3장 Vue.js 기본 11. 이벤트 처리 ~ 12. 폼바인딩 -->
+</head>
+
+<body>
+    <div id="app">
+        <!-- form submit-->
+        <form v-on:submit.prevent="onSubmit">
+            <table>
+                <tr>
+                    <td>사용자 아이디</td>
+                    <td>
+                        <!-- <input type="text" v-on:input="userId = $event.target.value" v-bind:value="userId" /> -->
+                        <input type="text" v-model="userId" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>비밀번호</td>
+                    <td>
+                        <!-- <input type="password" v-on:input="userPw = $event.target.value" v-bind:value="userPw" /> -->
+                        <input type="password" v-model="userPw" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>소개</td>
+                    <td><textarea row="5" v-model="introduction"></textarea></td>
+                </tr>
+                <tr>
+                    <td>개발자 여부</td>
+                    <td>
+                        <!-- <input type="checkbox" v-on:change="handleCheckBox"> -->
+                        <input type="checkbox" v-model="developer">
+                    </td>
+                </tr>
+                <!-- <tr>
+                    <td>개발자 여부</td>
+                    <td>
+                        <input type="checkbox" v-on:change="handleCheckBox()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>개발자 여부</td>
+                    <td>
+                        <input type="checkbox" v-on:change="handleCheckBox2($event)">
+                    </td>
+                </tr>
+                <tr>
+                    <td>개발자 여부</td>
+                    <td>
+                        <input type="checkbox" v-on:change="handleCheckBox3('체크함!!')">
+                    </td>
+                </tr>
+                <tr>
+                    <td>개발자 여부</td>
+                    <td>
+                        <input type="checkbox" v-on:change="handleCheckBox4('checked!!',$event)">
+                    </td>
+                </tr> -->
+                <tr>
+                    <td>외국인 여부</td>
+                    <td>
+                        <input type="checkbox" v-model="foreigner" true-value="예" false-value="아니오">
+                    </td>
+                </tr>
+                <tr>
+                    <td>취미</td>
+                    <td>
+                        <input type="checkbox" id="chkSports" value="운동하기" v-model="hobbyList">
+                        <label for="chkSports">운동하기</label>
+                        <input type="checkbox" id="chkMusic" value="음악듣기" v-model="hobbyList">
+                        <label for="chkMusic">음악듣기</label>
+                        <input type="checkbox" id="chkMovie" value="영화보기" v-model="hobbyList">
+                        <label for="chkMovie">영화보기</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>성별</td>
+                    <td>
+                        <input type="radio" id="rdoMale" value="남자" v-model="gender">
+                        <label for="rdoMale">남자</label>
+                        <input type="radio" id="rdoFemale" value="여자" v-model="gender">
+                        <label for="rdoFemale">여자</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>국적</td>
+                    <td>
+                        <select v-model="nationality">
+                            <option disabled value="">=== 선택 ===</option>
+                            <option value="01">한국</option>
+                            <option value="02">독일</option>
+                            <option value="03">호주</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>소유차량</td>
+                    <td>
+                        <select v-model="carList" multiple>
+                            <option>현대</option>
+                            <option>기아</option>
+                            <option>렉서스</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                <button type="submit">등록</button>
+            </p>
+        </form>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+
+    /*
+        v-model을 적용하여 form을 도출하는 예제
+    */
+
+    var App = new Vue({
+        el: '#app',
+        data: {
+            userId: '',
+            userPw: '',
+            introduction: '',
+            developer: false,
+            foreigner: '아니오',
+            hobbyList: [],
+            gender: 'female',
+            nationality: "",
+            carList: []
+        },
+        methods : {
+            onSubmit(){
+                const {
+                    userId, userPw, introduction, developer, foreigner, hobbyList, gender, nationality, carList} = this
+                    console.log('userId :',userId);
+                    console.log('userPw :', userPw);
+                    console.log('introduction :', introduction);
+                    console.log('developer :', developer);
+                    console.log('foreigner :', foreigner);    
+                    console.log('hobbyList :', hobbyList); 
+                    console.log('gender :', gender);
+                    console.log('nationality :', nationality);
+                    console.log('carList :', carList);        
+            }         
+                // },
+                // handleCheckBox(){
+                //     console.log('handlerCheckBox 첫번째');
+                // },
+                // handleCheckBox2(event) {
+                // console.log('handlerCheckBox 두번째 :', event);
+                // },
+                // handleCheckBox3(message) {
+                // console.log('handlerCheckBox 세번째 :', message);
+                // }, 
+                // handleCheckBox4(message, event) {
+                // console.log('handlerCheckBox 네번째 메세지 :', message);
+                // console.log('handlerCheckBox 네번째 이벤트 :', event);
+                // }
+        } 
+    });
+
+</script>
+
+</html>
