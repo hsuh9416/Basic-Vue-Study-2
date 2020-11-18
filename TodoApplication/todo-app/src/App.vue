@@ -14,6 +14,8 @@
 
 <!-- 뷰 컴포넌트 내용 정의 영역 -->
 <script>
+// 스토어를 임포트한다.
+// import store from './store' <= main.js를 통하지 않고 수행하는 기존 방식
 import TodoHeader from './components/TodoHeader.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
@@ -22,9 +24,10 @@ import TodoFooter from './components/TodoFooter.vue';
 export default {
   name: 'App',
   // data 속성 todoItems 선언
-  data(){
-    return {
-      todoItems : []
+  computed : {
+    todoItems(){
+      // return store.state.todoItems <= main.js를 통하지 않고 수행하는 기존 방식 
+      return this.$store.state.todoItems 
     }
   },
   components : {
@@ -37,15 +40,21 @@ export default {
   methods : {
     // 모든 Todo 항목을 삭제한다.
     clearAll(){
-      this.todoItems = []
+      //store 프로퍼티를 이용한 스토어 접근
+      // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
+      this.$store.dispatch('clearAll')
     },
     // 새로운 Todo 항목을 추가한다.
     addTodo(todoItem){
-      this.todoItems.push(todoItem)
+      //store 프로퍼티를 이용한 스토어 접근
+      // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
+      this.$store.dispatch('addTodo', todoItem)
     },
     // 특정 Todo 항목을 삭제한다.
-    removeTodo(todoItem, index){
-      this.todoItems.splice(index,1)
+    removeTodo(index){
+      //store 프로퍼티를 이용한 스토어 접근
+      // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
+      this.$store.dispatch('removeTodo', index)
     }
   }
 }
