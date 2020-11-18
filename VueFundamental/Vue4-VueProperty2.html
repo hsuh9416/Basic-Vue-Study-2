@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <title> Vue3 - Vue Preperty 2 </title>
+    <!-- 3장 Vue.js 기본 9. 필터 ~ -->
+</head>
+
+<body>
+    <div id="app">
+        <div>
+            <ui>
+                <li v-for="item in items" v:bind:key="item.name"></li>
+                <ll>합계 {{totalPrice}} 원</ll>
+            </ui>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+<script type="text/javascript">
+
+    /*
+        1. Array.prototype.reduce()
+            => 배열의 요소들을 다 돌면서 각 요소들을 모두 합성하는 메소드
+            => [형식] arr.reduce((acc, item, index, array) => {},init)
+                acc: 누적된 값을 의미 
+                item : 배열의 각 요소 
+                index : 배열 요소의 인덱스 
+                array : reduce함수가 적용되고 있는 배열을 의미
+                init : 누적값의 초기값
+    */
+
+    var arr = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    var arr2 = arr.reduce((acc, item, index, array) => {
+        console.log("현재 idx=",index,"현재 idx의 값=", array[index]); // index 배열을 돌면서 증가, array는 연산 중인 배열의 이명 
+        return acc += item;
+    }, 0);
+    console.log("arr의 합계 = ",  arr2);
+
+
+    var itemList = [
+        {
+            name : 'CPU',
+            price : 462984,
+            quantity : 1
+        },
+        {
+            name: '메인보드',
+            price: 112053,
+            quantity: 1
+        },
+        {
+            name: '메모리',
+            price: 79608,
+            quantity: 2
+        }
+    ]
+
+    var App = new Vue({
+        el: "#app",
+        data: {
+            items: itemList
+        },
+        computed : {
+            totalPrice : function(){
+                return this.items.reduce((sum, item) =>{
+                    return sum + (item.price*item.quantity);
+                }, 0)
+            }
+        }
+    });
+
+
+</script>
+
+</html>
