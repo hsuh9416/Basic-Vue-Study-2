@@ -2,6 +2,10 @@
 
 > A Vue.js project
 
+# required resource
+
+> 저자(향단노트 님)가 운영하는 카페의 자료실에서 참조 => <a rel="link" href="https://cafe.naver.com/withonnote/62">자료실 바로가기</a>
+
 ## Build Setup
 
 ``` bash
