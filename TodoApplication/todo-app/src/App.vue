@@ -30,6 +30,12 @@ import {mapState, mapActions} from 'vuex'
 export default {
   name: 'App',
   // data 속성 todoItems 선언
+  components : {
+    "TodoHeader": TodoHeader,
+    "TodoInput": TodoInput,
+    "TodoList" : TodoList,
+    "TodoFooter" : TodoFooter
+  },
   computed : {
     /*
     todoItems(){
@@ -47,13 +53,6 @@ export default {
       'todoItems'
     ])
   },
-  components : {
-    "TodoHeader": TodoHeader,
-    "TodoInput": TodoInput,
-    "TodoList" : TodoList,
-    "TodoFooter" : TodoFooter
-  },
-
   // methods 속성
   methods : {
     /*
@@ -65,7 +64,10 @@ export default {
     ...mapActions([
       'clearAll',
       'addTodo',
-      'removeTodo'
+      'removeTodo',
+    // mapActions 헬퍼 함수에 사용할 actions 함수를 주입한다.
+      'save',
+      'restore'
     ]),
     // 모든 Todo 항목을 삭제한다.
     onClearAll(){
@@ -74,6 +76,8 @@ export default {
       // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
       // this.$store.dispatch('clearAll')  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
       this.clearAll()
+      // 주입된 actions의 함수 save()를 호출한다.
+      this.save()
     },
     // 새로운 Todo 항목을 추가한다.
     onAddTodo(todoItem){
@@ -82,6 +86,8 @@ export default {
       // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
       // this.$store.dispatch('addTodo', todoItem)  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
       this.addTodo(todoItem)
+            // 주입된 actions의 함수 save()를 호출한다.
+      this.save()
     },
     // 특정 Todo 항목을 삭제한다.
     onRemoveTodo(todoItem, index){
@@ -90,9 +96,14 @@ export default {
       // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
       // this.$store.dispatch('removeTodo', index)  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
       this.removeTodo(index)
+      // 주입된 actions의 함수 save()를 호출한다.
+      this.save()
+    },
+    // 컴포넌트 라이프 사이클 created()에서 저장된 데이터를 불러온다.
+    created(){
+      // 주입된 actions의 함수 restore()를 호출한다.
+      this.restore()
     }
-
-
   }
 }
 </script>
