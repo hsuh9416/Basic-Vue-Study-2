@@ -14,6 +14,8 @@
                 v-on:blur= "handleBlur"
                 v-on:keydown.enter= "updateTodo"
             />
+            <!-- Todo 항목 완료 상태를 변경하는 체크 박스 -->
+            <input type="checkbox" v-bind:checked="todoItem.done" v-on:change="toggleTodoStatus()">
             <!-- 버튼을 클릭하면 해당 Todo 항목을 삭제한다 -->
             <button v-on:click= "removeTodo">삭제</button>
         </li>
@@ -92,6 +94,10 @@
                 this.$emit('updateTodo',content, id)
 
                 this.$refs.content.blur() // focus가 해제될 때 처리
+            },
+            toggleTodoStatus(){
+                const id = this.todoItem.id
+                this.$emit('toggleTodoStatus',id)
             }
         }
     }
@@ -99,6 +105,6 @@
 
 <style scoped>
     div {
-        background-color : f7f9fa;
+        background-color : #19ce60;
     }
 </style>

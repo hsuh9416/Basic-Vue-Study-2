@@ -27,7 +27,8 @@
             v-on:removeTodo="onRemoveTodo"
             v-on:updateTodo="onUpdateTodo"
             v-on:setEditingId="SET_EDITING_ID"
-            v-on:resetEditingId="RESET_EDITING_ID"/>
+            v-on:resetEditingId="RESET_EDITING_ID"
+            v-on:toggleTodoStatus="onToggleTodoStatus"/>
       </ul>
   </div>
 </template>
@@ -119,6 +120,9 @@ export default {
         },
         onUpdateTodo(content, id){
             this.$emit('updateTodo', content, id)
+        },
+        onToggleTodoStatus(id){
+            this.$emit('toggleTodoStatus', id)
         }
     }
         

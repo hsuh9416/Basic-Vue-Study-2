@@ -7,7 +7,8 @@ import {
     RESTORE,
     EDIT_TODO,
     SET_EDITING_ID,
-    RESET_EDITING_ID
+    RESET_EDITING_ID,
+    TOGGLE_TODO_STATUS
 } from './mutation-types'
 
 // 뮤테이션 함수 정의
@@ -49,5 +50,21 @@ export default{
     },
     [RESET_EDITING_ID](state) {
         state.editingId = 0;
+    },
+    [TOGGLE_TODO_STATUS](state, id){
+        /*
+            filter 함수
+            =>배열 요소 중 filter 조건에 맞는 요소만 골라서 배열로 반환
+            => filter(반환 대상 요소 => {반환 조건식})
+               : 반환 조건식이 true인 경우 포함함
+            => 예제의 경우 특정 id 값에 해당하는 아이템을 돌려 받고 그 아이템에 대하여 상태를 변경한다.
+        */
+        const filtered = state.todoItems.filter(todoItem => {
+            return todoItem.id === id
+        })
+
+        filtered.forEach(todoItem => {
+            todoItem.done = !todoItem.done
+        })
     }
 }

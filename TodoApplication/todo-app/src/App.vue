@@ -18,7 +18,8 @@
         v-on:setEditingId="SET_EDITING_ID"
         v-on:resetEditingId="RESET_EDITING_ID"></TodoList> -->
       <TodoList v-on:removeTodo="onRemoveTodo"
-            v-on:updateTodo="onEditTodo"></TodoList>
+            v-on:updateTodo="onEditTodo"
+            v-on:toggleTodoStatus="onToggleTodoStatus"></TodoList>
     <!-- removeAll 이벤트를 수신하여 clearAll() 메서드를 실행한다. -->
     <!-- <TodoFooter v-on:removeAll="clearAll"></TodoFooter> -->
     <TodoFooter v-on:removeAll="onClearAll"></TodoFooter>
@@ -95,7 +96,8 @@ export default {
     // mapActions 헬퍼 함수에 사용할 actions 함수를 주입한다.
       'save',
       'restore',
-      'editTodo'
+      'editTodo',
+      'toggleTodoStatus'
     ]),
     // 모든 Todo 항목을 삭제한다.
     onClearAll(){
@@ -124,8 +126,10 @@ export default {
       */
       // Todo 항목 ID를 생성하여 새 항목을 만든다.
       const id = new Date().getTime() // 오늘날짜로 된 ID 생성
-      const todoItem = { id, content }
-
+ 
+      // Todo 항목 완료 상태를 나타내는 속성의 정의
+      const done = false
+      const todoItem = { id, content, done }
 
       this.addTodo(todoItem)
       // 주입된 actions의 함수 save()를 호출한다.
@@ -148,6 +152,10 @@ export default {
     onEditTodo(content, id){
       // this.editTodo({ index, content })//payload
       this.editTodo({ id, content })//payload
+      this.save()
+    },
+    onToggleTodoStatus(id){
+      this.toggleTodoStatus(id)
       this.save()
     },
     // 컴포넌트 라이프 사이클 created()에서 저장된 데이터를 불러온다.

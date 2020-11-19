@@ -5,7 +5,8 @@ import {
     CLEAR_ALL,
 // 뮤테이션 타입 상수를 가져온다.
     RESTORE,
-    EDIT_TODO
+    EDIT_TODO,
+    TOGGLE_TODO_STATUS
 } from './mutation-types'
 
 // 액션 함수 정의
@@ -47,5 +48,8 @@ export default{
     // Todo 항목을 편집하는 EDIT_TODO 뮤테이션을 실행시킨다.
     editTodo({commit}, payload){
         commit(EDIT_TODO, payload)
+    },
+    toggleTodoStatus({ commit }, id){
+        commit(TOGGLE_TODO_STATUS, id)
     }
 }
