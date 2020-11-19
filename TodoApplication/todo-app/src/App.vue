@@ -10,8 +10,11 @@
     <!-- <TodoList v-bind:todoItems="todoItems" v-on:removeTodo="removeTodo"></TodoList> -->
     <!-- updateTodo 이벤트를 처리할 메서드를 지정한다. -->
     <TodoList v-bind:todoItems="todoItems" 
-      v-on:removeTodo="onRemoveTodo"
-        v-on:updateTodo="onEditTodo"></TodoList>
+        v-bind:editingId ="editingId"
+        v-on:removeTodo="onRemoveTodo"
+        v-on:updateTodo="onEditTodo"
+        v-on:setEditingId="SET_EDITING_ID"
+        v-on:resetEditingId="RESET_EDITING_ID"></TodoList>
     <!-- removeAll 이벤트를 수신하여 clearAll() 메서드를 실행한다. -->
     <!-- <TodoFooter v-on:removeAll="clearAll"></TodoFooter> -->
     <TodoFooter v-on:removeAll="onClearAll"></TodoFooter>
@@ -28,7 +31,9 @@ import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
 
 // 헬퍼 함수를 불러온다.
-import {mapState, mapActions} from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
+// 편집 관련 뮤테이션 타입을 불러온다.
+import { RESET_EDITING_ID, SET_EDITING_ID } from './store/mutation-types'
 
 export default {
   name: 'App',
@@ -53,12 +58,19 @@ export default {
           => 즉, 병용해서 사용가능하다는 얘기임.
      */
     ...mapState([
-      'todoItems'
+      'todoItems',
+      // 헬퍼 함수에 editingId 값을 컴포넌트에 매핑
+      'editingId'
     ])
   },
   // methods 속성
   methods : {
-    /*
+    // mapMutations 헬퍼 함수를 통해 수정중인 ID값을 설정/해제하는 뮤테이션 함수를 컴포넌트에 매핑
+    ...mapMutations([
+      SET_EDITING_ID,
+      RESET_EDITING_ID
+    ]),
+      /*
       * mapActions 헬퍼 함수
       - 객체 전개 연산자(Object Spread Operator, '...A' 형식을 말함. 매개변수가 많은 함수를 호출할 때 용의)를 이용
       - mapActions 헬퍼 함수가 제공하는 스토어 상태 외에 컴포넌트 내에서 자체로 정의한 computed 속성을 함께 사용할 수 있다.
@@ -92,9 +104,16 @@ export default {
       // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
       // this.$store.dispatch('addTodo', todoItem)  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
 
+      /*
+      //편집 상태 반영 전 코드
       // Todo 항목에 편집상태를 표시할 isEditing 플래그 속성을 추가
       const isEditing = false
       const todoItem = { isEditing, content }
+      */
+      // Todo 항목 ID를 생성하여 새 항목을 만든다.
+      const id = new Date().getTime() // 오늘날짜로 된 ID 생성
+      const todoItem = { id, content }
+
 
       this.addTodo(todoItem)
       // 주입된 actions의 함수 save()를 호출한다.
@@ -110,8 +129,11 @@ export default {
       // 주입된 actions의 함수 save()를 호출한다.
       this.save()
     },
-    onEditTodo(content, index){
-      this.editTodo({ index, content })//payload
+    // 인덱스 대신 Todo 항목 ID와 함께 수정내용을 전달한다.
+    // onEditTodo(content, index){
+    onEditTodo(content, id){
+      // this.editTodo({ index, content })//payload
+      this.editTodo({ id, content })//payload
       this.save()
     },
     // 컴포넌트 라이프 사이클 created()에서 저장된 데이터를 불러온다.
