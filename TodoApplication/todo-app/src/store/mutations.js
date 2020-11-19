@@ -8,7 +8,8 @@ import {
     EDIT_TODO,
     SET_EDITING_ID,
     RESET_EDITING_ID,
-    TOGGLE_TODO_STATUS
+    TOGGLE_TODO_STATUS,
+    SET_FILTER
 } from './mutation-types'
 
 // 뮤테이션 함수 정의
@@ -66,5 +67,8 @@ export default{
         filtered.forEach(todoItem => {
             todoItem.done = !todoItem.done
         })
+    },
+    [SET_FILTER](state, filter) {
+        state.filter = filter
     }
 }

@@ -6,6 +6,8 @@
     <!-- addTodo 이벤트를 수신하여 addTodo() 메서드를 실행한다. -->
     <!-- <TodoInput v-on:addTodo="addTodo"></TodoInput> -->
     <TodoInput v-on:addTodo="onAddTodo"></TodoInput>
+    <!-- 필터 항목 추가 -->
+    <TodoFilter></TodoFilter>
     <!-- todoItems 데이터를 props로 전달한다. removeTodo 이벤트를 수신하여 removeTodo() 메서드를 실행한다. -->
     <!-- <TodoList v-bind:todoItems="todoItems" v-on:removeTodo="removeTodo"></TodoList> -->
     <!-- updateTodo 이벤트를 처리할 메서드를 지정한다. -->
@@ -34,7 +36,7 @@ import TodoHeader from './components/TodoHeader.vue';
 import TodoInput from './components/TodoInput.vue';
 import TodoList from './components/TodoList.vue';
 import TodoFooter from './components/TodoFooter.vue';
-
+import TodoFilter from './components/TodoFilter.vue';
 /*
   => TodoItem으로 이관
 // 헬퍼 함수를 불러온다.
@@ -51,7 +53,8 @@ export default {
     "TodoHeader": TodoHeader,
     "TodoInput": TodoInput,
     "TodoList" : TodoList,
-    "TodoFooter" : TodoFooter
+    "TodoFooter" : TodoFooter,
+    "TodoFilter" : TodoFilter
   },
 /*
   computed : {

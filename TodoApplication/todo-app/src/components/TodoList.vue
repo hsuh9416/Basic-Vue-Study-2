@@ -38,7 +38,7 @@
 // TodoItem 컴포넌트 임포트
 import TodoItem from './TodoItem.vue'
 // 헬퍼 함수 호출
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapGetters } from 'vuex'
 // 선언된 뮤테이션 타입 호출
 import { RESET_EDITING_ID, SET_EDITING_ID} from '../store/mutation-types'
 
@@ -46,11 +46,18 @@ export default {
     // props : ['todoItems','editingId'],
     components: { 'TodoItem' : TodoItem }, // 지역 컴포넌트 등록
     computed :{
-    ...mapState([
-      'todoItems',
-      // 헬퍼 함수에 editingId 값을 컴포넌트에 매핑
-      'editingId'
-    ])
+        // 필터가 적용된 배열로만 반환해야 한다.
+        todoItems(){
+            return this.filteredTodoItems
+        },
+        ...mapState([
+            //  'todoItems',
+            // 헬퍼 함수에 editingId 값을 컴포넌트에 매핑
+            'editingId'
+        ]),
+        ...mapGetters([
+            'filteredTodoItems'
+        ])
     },
     //methods 속성
     methods : {
