@@ -33,7 +33,8 @@ export default{
     // 애플리케이션 상태 데이터를 저장한다.
     save({ state }){
         const data = {
-            todoItems : state.todoItems
+            todoItems : state.todoItems,
+            nextTodoId : state.nextTodoId
         }
         localStorage.setItem('todo-app-data', JSON.stringify(data))
     },

@@ -16,8 +16,21 @@ import {
 export default{
     // ADD_TODO(state, todoItem){ <= 분리되기 전 형식
     // 아래의 []는 상수를 함수 이름으로 쓰기 위한 조치이다.(ES2015 방식) 
-    [ADD_TODO](state, todoItem){
-        state.todoItems.push(todoItem)
+    // [ADD_TODO](state, todoItem){
+    [ADD_TODO](state, payload){
+        // Todo 항목 내용을 분할 대입한다.
+        const { content } = payload
+
+        // Todo 항목 추가
+        // state.todoItems.push(todoItem)
+        state.todoItems.push({
+            id : state.nextTodoId,
+            content,
+            done : false
+        })
+
+        state.nextTodoId++
+
     },
     // [REMOVE_TODO](state, index){
     [REMOVE_TODO](state, id) {
@@ -29,8 +42,10 @@ export default{
     },
     // RESTORE 뮤테이션 타입 상수를 뮤테이션 이름으로 가지는 뮤테이션 함수를 작성한다.
     // RESTORE은 '' 객체를 불러오고 그 중 todoItems만 호출한다.
-    [RESTORE](state, { todoItems }){
+    // [RESTORE](state, { todoItems }){
+    [RESTORE](state, { todoItems, nextTodoId }){
         state.todoItems = todoItems
+        state.nextTodoId = nextTodoId
     },
     [EDIT_TODO](state, payload){
         /*

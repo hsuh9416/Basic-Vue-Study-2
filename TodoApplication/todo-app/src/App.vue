@@ -127,13 +127,16 @@ export default {
       const isEditing = false
       const todoItem = { isEditing, content }
       */
+     /*
       // Todo 항목 ID를 생성하여 새 항목을 만든다.
       const id = new Date().getTime() // 오늘날짜로 된 ID 생성
  
       // Todo 항목 완료 상태를 나타내는 속성의 정의
       const done = false
       const todoItem = { id, content, done }
-
+      */
+      // Todo 항목 내용만 전달하는 방식으로 수정
+      const todoItem = { content }
       this.addTodo(todoItem)
       // 주입된 actions의 함수 save()를 호출한다.
       this.save()
