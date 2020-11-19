@@ -4,7 +4,8 @@ import {
     REMOVE_TODO,
     CLEAR_ALL,
 // 뮤테이션 타입 상수를 가져온다.
-    RESTORE
+    RESTORE,
+    EDIT_TODO
 } from './mutation-types'
 
 // 액션 함수 정의
@@ -41,5 +42,9 @@ export default{
             //RESTORE 뮤테이션을 커밋한다.
             commit(RESTORE, JSON.parse(data));
         }
+    },
+    // Todo 항목을 편집하는 EDIT_TODO 뮤테이션을 실행시킨다.
+    editTodo({commit}, payload){
+        commit(EDIT_TODO, payload)
     }
 }

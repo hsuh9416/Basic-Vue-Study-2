@@ -8,7 +8,10 @@
     <TodoInput v-on:addTodo="onAddTodo"></TodoInput>
     <!-- todoItems 데이터를 props로 전달한다. removeTodo 이벤트를 수신하여 removeTodo() 메서드를 실행한다. -->
     <!-- <TodoList v-bind:todoItems="todoItems" v-on:removeTodo="removeTodo"></TodoList> -->
-    <TodoList v-bind:todoItems="todoItems" v-on:removeTodo="onRemoveTodo"></TodoList>
+    <!-- updateTodo 이벤트를 처리할 메서드를 지정한다. -->
+    <TodoList v-bind:todoItems="todoItems" 
+      v-on:removeTodo="onRemoveTodo"
+        v-on:updateTodo="onEditTodo"></TodoList>
     <!-- removeAll 이벤트를 수신하여 clearAll() 메서드를 실행한다. -->
     <!-- <TodoFooter v-on:removeAll="clearAll"></TodoFooter> -->
     <TodoFooter v-on:removeAll="onClearAll"></TodoFooter>
@@ -67,7 +70,8 @@ export default {
       'removeTodo',
     // mapActions 헬퍼 함수에 사용할 actions 함수를 주입한다.
       'save',
-      'restore'
+      'restore',
+      'editTodo'
     ]),
     // 모든 Todo 항목을 삭제한다.
     onClearAll(){
@@ -80,13 +84,20 @@ export default {
       this.save()
     },
     // 새로운 Todo 항목을 추가한다.
-    onAddTodo(todoItem){
+    //    onAddTodo(todoItem){
+    // 매개변수명을 todoItem에서 content로 변경
+    onAddTodo(content){
       // addTodo(todoItem){
       //store 프로퍼티를 이용한 스토어 접근
       // 스토어 dispatch 메서드를 통해서 clearAll 액션을 호출한다.
       // this.$store.dispatch('addTodo', todoItem)  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
+
+      // Todo 항목에 편집상태를 표시할 isEditing 플래그 속성을 추가
+      const isEditing = false
+      const todoItem = { isEditing, content }
+
       this.addTodo(todoItem)
-            // 주입된 actions의 함수 save()를 호출한다.
+      // 주입된 actions의 함수 save()를 호출한다.
       this.save()
     },
     // 특정 Todo 항목을 삭제한다.
@@ -97,6 +108,10 @@ export default {
       // this.$store.dispatch('removeTodo', index)  <= 헬퍼 함수 사용전 & 프로퍼티로 수행하는 방식 
       this.removeTodo(index)
       // 주입된 actions의 함수 save()를 호출한다.
+      this.save()
+    },
+    onEditTodo(content, index){
+      this.editTodo({ index, content })//payload
       this.save()
     },
     // 컴포넌트 라이프 사이클 created()에서 저장된 데이터를 불러온다.

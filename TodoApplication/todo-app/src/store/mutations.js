@@ -4,7 +4,8 @@ import {
     REMOVE_TODO,
     CLEAR_ALL,
 // 뮤테이션 타입 상수를 가져온다.
-    RESTORE
+    RESTORE,
+    EDIT_TODO
 } from './mutation-types'
 
 // 뮤테이션 함수 정의
@@ -24,5 +25,10 @@ export default{
     // RESTORE은 '' 객체를 불러오고 그 중 todoItems만 호출한다.
     [RESTORE](state, { todoItems }){
         state.todoItems = todoItems
+    },
+    [EDIT_TODO](state, payload){
+        const { index, content } = payload
+        const isEditing = false // 원상 복귀
+        state.todoItems.splice(index, 1, { isEditing, content })// 수정할 인덱스, 수정할 갯수, 대신 입력할 데이터
     }
 }
