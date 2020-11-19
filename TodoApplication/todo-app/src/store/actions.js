@@ -19,8 +19,9 @@ export default{
     addTodo({ commit }, payload) {
         commit(ADD_TODO, payload)
     },
-    removeTodo({ commit }, payload) {
-        commit(REMOVE_TODO, payload)
+    // removeTodo({ commit }, payload) {
+    removeTodo({ commit }, id) {
+        commit(REMOVE_TODO, id)
     },
     clearAll({ commit }) {
         commit(CLEAR_ALL)

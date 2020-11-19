@@ -17,8 +17,10 @@ export default{
     [ADD_TODO](state, todoItem){
         state.todoItems.push(todoItem)
     },
-    [REMOVE_TODO](state, index){
-        state.todoItems.splice(index, 1)
+    // [REMOVE_TODO](state, index){
+    [REMOVE_TODO](state, id) {
+        const targetIndex = state.todoItems.findIndex(v => v.id === id)
+        state.todoItems.splice(targetIndex, 1)
     },
     [CLEAR_ALL](state){
         state.todoItems = []
