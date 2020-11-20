@@ -1,13 +1,48 @@
 <template>
     <div>
-        <h3>게시판 목록 뷰</h3>
-        <router-link :to="{ name : 'BoardReadPage', params : { boardNo : 100 } }">게시판 상세보기</router-link>
+        <!-- <h3>게시판 목록 뷰</h3>
+        <router-link :to="{ name : 'BoardReadPage', params : { boardNo : 100 } }">게시판 상세보기</router-link> -->
+        
+        <!-- 목록 화면 구성 -->
+        <table border="1">
+            <tr>
+                <th align="center" width="80">번호</th>
+                <th align="center" width="320">제목</th>
+                <th align="center" width="100">작성자</th>
+                <th align="center" width="180">등록일시</th>                
+            </tr>
+            <tr v-if="!boards || (Array.isArray(boards) && boards.length === 0)">
+                <td colspan="4">
+                    List is Empty.
+                </td>
+            </tr>
+            <tr v-else v-for="board in boards" :key="board.boardNo">
+                <td align="center">{{ board.boardNo }}</td>
+                <td align="left">
+                    <router-link :to="{ name : 'BoardReadPage', params : { boardNo:board.boardNo.toString() } }">
+                        {{ board.title }}
+                    </router-link>
+                </td>
+                <td align="right">
+                    {{ board.writer }}
+                </td>
+                <td align="center">
+                    {{ board.regDate }}
+                </td>     
+            </tr>
+        </table>
     </div>
 </template>
 
 <script>
     export default {
         // 컴포넌트 이름
-        name : 'BoardList'
+        name : 'BoardList',
+        // props 속성 정의
+        props : {
+            boards : {
+                type : Array
+            }
+        }
     }
 </script>
