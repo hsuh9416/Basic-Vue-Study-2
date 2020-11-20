@@ -4,7 +4,7 @@
         <item-read v-if="item" :item="item"/>
         <p v-else>loading...</p>
         <router-link :to="{ name: 'ItemModifyPage', params: { itemId } }">편집</router-link>
-        <button>삭제</button>
+        <button @click="onDelete">삭제</button>
         <router-link :to="{ name: 'ItemListPage' }">목록</router-link>
     </div>
 </template>
@@ -13,6 +13,7 @@
 import ItemRead from '@/components/ItemRead'
 import { mapGetters, mapState, mapActions } from 'vuex'
 import api from '@/api'
+
 export default {
     name: 'ItemReadPage',
     components: { ItemRead },
@@ -26,7 +27,19 @@ export default {
         ...mapState([ 'item' ])
     },
     methods: {
-        ...mapActions(['fetchItem'])
+        ...mapActions(['fetchItem']),
+        onDelete(){
+            const { itemId } = this.item
+            api.delete(`/items/${itemId}`)
+            .then( res => {
+                alert('게시글이 정상적으로 삭제되었습니다.')
+                this.$router.push({ name: 'ItemListPage' })
+            })
+            .catch( err => {
+                console.log(err.response.data.msg)
+                alert('오류로 인하여 삭제에 실패하였습니다.')
+            })
+        }
     },
     created(){
         this.fetchItem(this.itemId)
