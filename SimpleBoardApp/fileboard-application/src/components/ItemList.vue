@@ -6,7 +6,7 @@
             <th align="center" width="100">상품가격</th>
         </tr>
         <tr v-if="!items || (Array.isArray(items) && items.length === 0)">
-            <td colspan="3">
+            <td colspan="3" align="center">
                 List is empty.
             </td>
         </tr>

@@ -16,11 +16,6 @@ export default {
     components: {
         ItemList
     },
-    props: {
-        items: {
-            type: Array
-        }
-    },
     computed: {
         ...mapState([ 'items' ])
     },

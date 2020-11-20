@@ -7,7 +7,6 @@
 
 <script>
 import ItemRegisterForm from '@/components/ItemRegisterForm'
-import { mapState, mapActions } from 'vuex'
 import api from '@/api'
 export default {
     name: 'ItemRegisterPage',

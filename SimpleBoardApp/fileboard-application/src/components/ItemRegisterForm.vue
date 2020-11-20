@@ -11,7 +11,7 @@
             </tr>
             <tr>
                 <td>상품파일</td>
-                <td><input type="file" @change="handlerFileChange($event)"></td>
+                <td><input type="file" @change="handleFileChange($event)"></td>
                 <td></td>
             </tr>
             <tr>
@@ -29,11 +29,13 @@
 <script>
 export default {
     name: 'ItemRegisterForm',
-    data: {
-        itemName: '',
-        price: '',
-        description: '',
-        file: ''
+    data() {
+        return {
+            itemName: '',
+            price: '',
+            description: '',
+            file: ''
+        }
     },
     methods: {
         onSubmit(){
