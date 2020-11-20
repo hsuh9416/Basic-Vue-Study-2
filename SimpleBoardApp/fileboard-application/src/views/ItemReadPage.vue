@@ -10,6 +10,7 @@
 
 <script>
 import ItemRead from '@/components/ItemRead'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'ItemReadPage',

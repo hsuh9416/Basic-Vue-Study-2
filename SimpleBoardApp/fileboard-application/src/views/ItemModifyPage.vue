@@ -8,6 +8,7 @@
 <script>
 
 import ItemModifyForm from '../components/ItemModifyForm.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'ItemModifyPage',

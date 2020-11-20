@@ -9,11 +9,26 @@
 
 <script>
 import ItemList from '@/components/ItemList'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'ItemListPage',
     components: {
         ItemList
+    },
+    props: {
+        items: {
+            type: Array
+        }
+    },
+    computed: {
+        ...mapState([ 'items' ])
+    },
+    methods: {
+        ...mapActions(['fetchItemList'])
+    },
+    mounted(){
+        this.fetchItemList()
     }
 }
 </script>
