@@ -28,7 +28,7 @@
                     // 등록 후 상세보기 화면으로 이동
                     this.$router.push({
                         name : 'BoardReadPage',
-                        params : { boardNo : res.data.boardNo }
+                        params : { boardNo : res.data.boardNo.toString() }
                     })
                 })
                 .catch( err => {

@@ -3,7 +3,7 @@
         <h2>게시판 상세보기</h2>
         <board-read v-if="board" :board="board"/>
         <p v-else>loading...</p>
-        <router-link :to="{ name : 'BoardModifyPage', params : { boardNo : 100 } }">편집</router-link>
+        <router-link :to="{ name : 'BoardModifyPage', params : { boardNo } }">편집</router-link>
         <button @click="onDelete" >삭제</button>
         <router-link :to="{ name : 'BoardListPage' }">목록</router-link>
     </div>
@@ -32,7 +32,7 @@
         },
         // 매핑된 함수 fetchBoardList() 실행
         created() {
-            this.fetchBoard(this.BoardNo)
+            this.fetchBoard(this.boardNo)
             .catch( err => {
                 console.log(err.response.data.message)
                 alert('오류로 게시글을 불러 올 수 없었습니다.')

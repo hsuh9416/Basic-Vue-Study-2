@@ -3,5 +3,6 @@ import axios from 'axios'
 
 // Axios 객체 생성과 익스포트
 export default axios.create({
-    baseURL : '//localhost:8080'
+    baseURL : '//localhost:8080',
+    responseEncoding: 'utf8'
 })
