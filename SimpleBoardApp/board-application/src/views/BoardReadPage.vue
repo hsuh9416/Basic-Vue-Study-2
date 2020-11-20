@@ -4,7 +4,7 @@
         <board-read v-if="board" :board="board"/>
         <p v-else>loading...</p>
         <router-link :to="{ name : 'BoardModifyPage', params : { boardNo : 100 } }">편집</router-link>
-        <button>삭제</button>
+        <button @click="onDelete" >삭제</button>
         <router-link :to="{ name : 'BoardListPage' }">목록</router-link>
     </div>
 </template>
@@ -35,13 +35,25 @@
             this.fetchBoard(this.BoardNo)
             .catch( err => {
                 console.log(err.response.data.message)
-                alert('오류로 게시글을 불러올 수없었습니다.')
+                alert('오류로 게시글을 불러 올 수 없었습니다.')
                 this.$router.back()
             })
         },
         // 스토어 액션을 methods 속성으로 등록
         methods : {
-            ...mapActions(['fetchBoard'])
+            ...mapActions(['fetchBoard']),
+            onDelete(){
+                const { boardNo } = this.board
+                api.delete(`/boards/${boardNo}`)
+                .then( res => {
+                    alert('게시글이 삭제되었습니다.')
+                    this.$router.push({ name : 'BoardListPage' })
+                })
+                .catch( err => {
+                    console.log(err.response.data.message)
+                    alert('오류로 인하여 삭제에 실패하였습니다.')
+                })
+            }
         }
     }
 </script>
