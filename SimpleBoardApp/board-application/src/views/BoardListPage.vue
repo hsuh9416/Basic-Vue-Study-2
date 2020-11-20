@@ -12,7 +12,9 @@
     import BoardList from '@/components/BoardList'
     // Vuex 헬퍼 함수 임포트
     import { mapState, mapActions } from 'vuex'
-
+    
+    import api from '@/api'
+    
     export default {
         // 컴포넌트 이름
         name : 'BoardListPage',
