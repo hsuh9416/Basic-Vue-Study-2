@@ -6,12 +6,16 @@ import App from './App'
 // 라우터 사용
 import router from './router'
 
+// Vuex 사용
+import store from './store'
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
