@@ -36,10 +36,10 @@ export default {
                 alert('파일이 정상적으로 등록되었습니다.')
                 this.$router.push({
                     name: 'ItemReadPage',
-                    params: { itemId: res.data.itemId }
+                    params: { itemId: res.data.itemId.toString() }
                 })
             }).catch( err => {
-                console.log(err.response.data.msg)
+                console.log(err.response.data)
                 alert('오류 발생으로 파일 업로드에 실패하였습니다.')
             })
         }

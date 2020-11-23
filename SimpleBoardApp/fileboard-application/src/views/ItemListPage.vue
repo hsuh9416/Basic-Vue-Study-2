@@ -3,7 +3,7 @@
         <h2>상품 목록</h2>
         <router-link :to="{ name: 'ItemRegisterPage' }">새로 만들기</router-link>
         
-        <item-list/>
+        <item-list :items="items"/>
     </div>
 </template>
 
