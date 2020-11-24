@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Add this to <head> -->
+        <!-- Load required Bootstrap and BootstrapVue CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" 
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" 
+        crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue.min.css" 
+        integrity="sha512-rbXufjCYXcL7yXM6mQwoF2wO/swHjqYVQtysWe9i/hM2KAJpV1zRZ7UGb5EWPA93ols9hHGkOzuTytomkzfyzA==" 
+        crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue-icons.min.css" 
+        integrity="sha512-i0tPmtwhNYyKmqYiccSN9qsEX25FsNNkeWqIbjYyk7QoVkPLfyl7QsABy3oIQx5ofROjV6KLJTzV+asMrT25UA==" 
+        crossorigin="anonymous" />
+
+
+        <title> ECMAScript6 - Promise </title>
+        <!-- 2장 ECMAScript6 16. 프로미스 -->
+    </head>
+    
+    <body>
+        <div> </div>
+        <div id="app">
+            <div class="overflow-auto">
+                <b-pagination
+                  v-model="currentPage"
+                  :total-rows="rows"
+                  :per-page="perPage"
+                  aria-controls="my-table"
+                ></b-pagination>
+            
+                <p class="mt-3">Current Page: {{ currentPage }}</p>
+            
+                <b-table
+                  id="my-table"
+                  :items="items"
+                  :per-page="perPage"
+                  :current-page="currentPage"
+                  small
+                ></b-table>
+              </div>
+        </div>
+    </body>
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue.min.js" integrity="sha512-8kPdh/QOb9Lc2e3uQyfHWcqLq0WuyQ0awXGfKkXJw22ryOGhz6xuKnKdorhN1+2j1j6YGL0SnCU292v/zB10zg==" crossorigin="anonymous"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue-icons.min.js" integrity="sha512-jfzwfsCdubyM9aVqsaQZd2wafJ8N/XcuRu1xUSAseSRemHfe+eqwSXSi86wSoywtvgF92xgUoExoegOafO6I4Q==" crossorigin="anonymous"></script>
+    <script>
+        /*
+            bootstrap-vue를 통핸 paging 처리 (간단)
+        */
+            var App = new Vue({
+                el: "#app",
+                data: {
+                    perPage: 3,
+                    currentPage: 1,
+                    items: [
+                    { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
+                    { id: 2, first_name: 'Wilma', last_name: 'Flintstone' },
+                    { id: 3, first_name: 'Barney', last_name: 'Rubble' },
+                    { id: 4, first_name: 'Betty', last_name: 'Rubble' },
+                    { id: 5, first_name: 'Pebbles', last_name: 'Flintstone' },
+                    { id: 6, first_name: 'Bamm Bamm', last_name: 'Rubble' },
+                    { id: 7, first_name: 'The Great', last_name: 'Gazzoo' },
+                    { id: 8, first_name: 'Rockhead', last_name: 'Slate' },
+                    { id: 9, first_name: 'Pearl', last_name: 'Slaghoople' }
+                    ]
+                },
+                computed: {
+                    rows() {
+                        return this.items.length
+                    }
+                }
+            }); 
+    </script>
+</html>
