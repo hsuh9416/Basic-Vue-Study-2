@@ -2,7 +2,9 @@ import {
     SET_ACCESS_TOKEN, 
     SET_MY_INFO,
     DESTROY_ACCESS_TOKEN,
-    DESTROY_MY_INFO
+    DESTROY_MY_INFO,
+    FETCH_CODECLASS_LIST,
+    FETCH_CODECLASS
 } from './mutation-types'
 
 import api from '@/api'
@@ -33,6 +35,11 @@ export default {
     },
     [DESTROY_MY_INFO](state){
         state.myinfo = null
-
+    },
+    [FETCH_CODECLASS_LIST](state, codeClasses){
+        state.codeClasses = codeClasses
+    },
+    [FETCH_CODECLASS](state, codeClass){
+        state.codeClass = codeClass
     }
 }

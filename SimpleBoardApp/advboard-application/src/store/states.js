@@ -1,4 +1,6 @@
 export default {
     accessToken : '',
-    myinfo: null
+    myinfo: null,
+    codeClasses: [],
+    codeClass: null
 }

@@ -4,7 +4,9 @@ import {
     SET_ACCESS_TOKEN,
     SET_MY_INFO,
     DESTROY_ACCESS_TOKEN,
-    DESTROY_MY_INFO
+    DESTROY_MY_INFO,
+    FETCH_CODECLASS_LIST,
+    FETCH_CODECLASS
 } from './mutation-types'
 
 export default {
@@ -33,5 +35,17 @@ export default {
     signout({ commit }){
         commit(DESTROY_MY_INFO)
         commit(DESTROY_ACCESS_TOKEN)
-    }
+    },
+    fetchCodeClassList({ commit }){
+        return api.get('/codegroups')
+        .then(res => {
+            commit(FETCH_CODECLASS_LIST, res.data)
+        })
+    },
+    fetchCodeClass({ commit }, classCode){
+        return api.get(`/codegroups/${classCode}`)
+        .then(res => {
+            commit(FETCH_CODECLASS, res.data)
+        })
+    }, 
 }

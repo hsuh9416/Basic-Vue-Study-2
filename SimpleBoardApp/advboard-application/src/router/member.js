@@ -1,7 +1,7 @@
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import AdminSetupPage from '@/pages/member/AdminSetupPage'
+import AdminSetupPage from '@/views/member/AdminSetupPage'
 
 export const MemberRouters = [
     {
