@@ -14,31 +14,36 @@
         integrity="sha512-i0tPmtwhNYyKmqYiccSN9qsEX25FsNNkeWqIbjYyk7QoVkPLfyl7QsABy3oIQx5ofROjV6KLJTzV+asMrT25UA==" 
         crossorigin="anonymous" />
 
-
         <title> VueEx - bootstrapVue Pagination Basic </title>
         <!-- 번외1 Bootstrap-vue를 이용한 client-side pagination 기초 -->
     </head>
-    
     <body>
-        <div> </div>
+        <h3 align="center" style="padding: 10px;">VueEx - bootstrapVue Pagination Basic</h3>
+        <hr>
         <div id="app">
             <div class="overflow-auto">
-                <b-pagination
-                  v-model="currentPage"
-                  :total-rows="rows"
-                  :per-page="perPage"
-                  aria-controls="my-table"
-                ></b-pagination>
-            
-                <p class="mt-3">Current Page: {{ currentPage }}</p>
-            
-                <b-table
-                  id="my-table"
-                  :items="items"
-                  :per-page="perPage"
-                  :current-page="currentPage"
-                  small
-                ></b-table>
+                <!-- table part -->
+                <div>
+                    <b-table
+                    style="text-align: center;"
+                    id="my-table"
+                    :items="items"
+                    :per-page="perPage"
+                    :current-page="currentPage"
+                    small>
+                    </b-table>
+                </div>
+                <!-- pagination part -->
+                <div>
+                    <b-pagination
+                        align="center"
+                        v-model="currentPage"
+                        :total-rows="rows"
+                        :per-page="perPage"
+                        aria-controls="my-table">
+                    </b-pagination>
+                </div>
+                <h5 class="mt-3" style="padding-top: 15px; text-align: center; color: blue;">Current Page: {{ currentPage }}</h5>
               </div>
         </div>
     </body>
