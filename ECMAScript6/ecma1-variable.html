@@ -1,17 +1,14 @@
-<html>
+<!doctype html>
+<html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title> ECMAScript6 - 선언자(var/let/const) </title>
         <!-- 2장 ECMAScript6 1. var 선언자 특성 ~ 3. const 선언자 -->
     </head>
     <body>
-        <div> </div>
         <div id="app">
-            <div>
-                <button @click="valueSwitching"> var로 값 전환</button>
-            </div>
-            <div>
-                현재 숫자 = {{valueSwitched ? 10 : 15}}
-            </div>
+            <h3 align="center">ECMAScript6 - 선언자(var/let/const)</h3>
+            <div align="center">{{ message }}</div>
         </div>
     </body>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -64,13 +61,7 @@
         var App = new Vue({
             el: "#app",
             data : {
-                message : "Hello",
-                valueSwitched : false
-            },
-            methods : {
-                valueSwitching : function(){
-                    this.valueSwitched = this.valueSwitched ? false : true;
-                }
+                message : "이 예제의 내용은 console(개발자 도구)로만 확인하실 수 있습니다."
             }
         }); 
     </script>

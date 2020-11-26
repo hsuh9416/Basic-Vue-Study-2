@@ -1,136 +1,123 @@
-<html>
-
-<head>
-    <title> ECMAScript6 - Class Expression </title>
-    <!-- 2장 ECMAScript6 12. 클래스 구문 ~ 13. 클래스 상속 -->
-</head>
-
-<body>
-    <div> </div>
-    <div id="app">
-        <div>
-            <button @click="valueSwitching"> var로 값 전환</button>
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> ECMAScript6 - Class Expression </title>
+        <!-- 2장 ECMAScript6 12. 클래스 구문 ~ 13. 클래스 상속 -->
+    </head>
+    <body>
+        <div id="app">
+            <h3 align="center">ECMAScript6 - Class Expression</h3>
+            <div align="center">{{ message }}</div>
         </div>
-        <div>
-            현재 숫자 = {{valueSwitched ? 10 : 15}}
-        </div>
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-<script type="text/javascript">
-    /*
-        1. 클래스 기본
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="text/javascript">
+        /*
+            1. 클래스 기본
 
-        * 정적 메서드와 정적 프로퍼티
-         => prototype가 아닌 클래스 함수 자체에 메서드를 설정하는 방식
-         => 정적 메서드는 프로퍼티 형태로 직접 할당하는 것과 동일하단 일을 수행함
-         => 객체가 아닌 클래스 자체에 속한 함수를 생성하고 싶을 때 사용함.
-         => 정적 프로퍼티의 경우 메서드와 마찬가지로 static를 기용하는 방식으로 선언할 수도 있고, 호이스팅의 로직을 이용하여 외부에서 초기화 하는 방식으로 선언할 수도 있다.
-    */
-    // 클래스 표현식
-    class Coffee {
-        // 일반적인 class와 달리 property는 별도로 선언하지 않음. <= JSON
-        constructor(name){// 프로퍼티 선언자
-            this._name = name;
+            * 정적 메서드와 정적 프로퍼티
+            => prototype가 아닌 클래스 함수 자체에 메서드를 설정하는 방식
+            => 정적 메서드는 프로퍼티 형태로 직접 할당하는 것과 동일하단 일을 수행함
+            => 객체가 아닌 클래스 자체에 속한 함수를 생성하고 싶을 때 사용함.
+            => 정적 프로퍼티의 경우 메서드와 마찬가지로 static를 기용하는 방식으로 선언할 수도 있고, 호이스팅의 로직을 이용하여 외부에서 초기화 하는 방식으로 선언할 수도 있다.
+        */
+        // 클래스 표현식
+        class Coffee {
+            // 일반적인 class와 달리 property는 별도로 선언하지 않음. <= JSON
+            constructor(name){// 프로퍼티 선언자
+                this._name = name;
 
-            //정적 프로퍼티
-            Coffee.salesVolume++;
-        }
-        
-        get name(){ // 접근자 : getter
-            return this._name;
-        }
+                //정적 프로퍼티
+                Coffee.salesVolume++;
+            }
+            
+            get name(){ // 접근자 : getter
+                return this._name;
+            }
 
-        set name(name){ // 접근자 : setter
-            this._name = name;
-        }
+            set name(name){ // 접근자 : setter
+                this._name = name;
+            }
 
-        display(){ // function
-            console.log(this._name);
-        }
+            display(){ // function
+                console.log(this._name);
+            }
 
-        //정적 메서드
-        static getSalesVolume(){
-            return Coffee.salesVolume;
-        }
+            //정적 메서드
+            static getSalesVolume(){
+                return Coffee.salesVolume;
+            }
 
-        toString(){
-            return "부모는 커피입니다.";
-        }
-    }
-
-    // 정적 프로퍼티 초기화(호이스팅을 이용한 외부 선언)
-    Coffee.salesVolume = 0;
-
-    let coffee = new Coffee("Americano");
-
-    //call getter
-    console.log(coffee.name);
-
-    //call setter
-    coffee.name = "Espresso";
-
-     //call getter
-    console.log(coffee.name);
-    
-    //function
-    coffee.display();
-
-    //정적 메서드 호출
-    console.log(Coffee.getSalesVolume());
-
-    coffee = new Coffee("Espresso");
-
-    //call getter
-    console.log(coffee.name);
-
-    //정적 메서드 호출
-    console.log(Coffee.getSalesVolume());
-
-    /*
-        3. 클래스 상속
-    */
-
-    class StarBucks extends Coffee {
-        constructor(){
-            super(); // 없으면 에러 발생! 반드시 부모 클래스를 불러 들여야 한다.
-        }
-
-        //메서드 재정의
-        toString(){
-            return "자식은 커피 브랜드입니다.";
-        }
-    }
-
-    let starBucks = new StarBucks();
-
-    // setter 상속
-    starBucks.name = "아메리카노";
-
-    // getter 상속
-    console.log(starBucks.name);
-
-    // 일반 메소드 상속
-    starBucks.display();
-
-    //재정의 상속 확인
-    console.log("재정의 전 =",coffee.toString());
-
-    console.log("재정의 후 =",starBucks.toString());
-
-
-    var App = new Vue({
-        el: "#app",
-        data: {
-            message: "Hello",
-            valueSwitched: false
-        },
-        methods: {
-            valueSwitching: function () {
-                this.valueSwitched = this.valueSwitched ? false : true;
+            toString(){
+                return "부모는 커피입니다.";
             }
         }
-    }); 
-</script>
 
+        // 정적 프로퍼티 초기화(호이스팅을 이용한 외부 선언)
+        Coffee.salesVolume = 0;
+
+        let coffee = new Coffee("Americano");
+
+        //call getter
+        console.log(coffee.name);
+
+        //call setter
+        coffee.name = "Espresso";
+
+        //call getter
+        console.log(coffee.name);
+        
+        //function
+        coffee.display();
+
+        //정적 메서드 호출
+        console.log(Coffee.getSalesVolume());
+
+        coffee = new Coffee("Espresso");
+
+        //call getter
+        console.log(coffee.name);
+
+        //정적 메서드 호출
+        console.log(Coffee.getSalesVolume());
+
+        /*
+            3. 클래스 상속
+        */
+
+        class StarBucks extends Coffee {
+            constructor(){
+                super(); // 없으면 에러 발생! 반드시 부모 클래스를 불러 들여야 한다.
+            }
+
+            //메서드 재정의
+            toString(){
+                return "자식은 커피 브랜드입니다.";
+            }
+        }
+
+        let starBucks = new StarBucks();
+
+        // setter 상속
+        starBucks.name = "아메리카노";
+
+        // getter 상속
+        console.log(starBucks.name);
+
+        // 일반 메소드 상속
+        starBucks.display();
+
+        //재정의 상속 확인
+        console.log("재정의 전 =",coffee.toString());
+
+        console.log("재정의 후 =",starBucks.toString());
+
+        var App = new Vue({
+                el: "#app",
+                data : {
+                    message : "이 예제의 내용은 console(개발자 도구)로만 확인하실 수 있습니다."
+                }
+            }); 
+    </script>
 </html>

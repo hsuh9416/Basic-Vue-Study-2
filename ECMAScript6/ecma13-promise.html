@@ -1,226 +1,213 @@
 <html>
-
-<head>
-    <title> ECMAScript6 - Promise </title>
-    <!-- 2장 ECMAScript6 16. 프로미스 -->
-</head>
-
-<body>
-    <div> </div>
-    <div id="app">
-        <div>
-            <button @click="valueSwitching"> var로 값 전환</button>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title> ECMAScript6 - Promise </title>
+        <!-- 2장 ECMAScript6 16. 프로미스 -->
+    </head>
+    <body>
+        <div id="app">
+            <h3 align="center">ECMAScript6 - Promise</h3>
+            <div align="center">{{ message }}</div>
         </div>
-        <div>
-            현재 숫자 = {{valueSwitched ? 10 : 15}}
-        </div>
-    </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
-<script type="text/javascript">
-    /*
-       1. 프로미스(Promise)란?
-        => 비동기 처리를 추상화한 객체를 말하며, 비동기 처리를 조작하는 방법을 제공한다.
-        => 프로미스는 비동기 처리를 실행하고 그 처리가 끝난 후에 다음 처리를 실행하기 위한 용도로 사용한다.
-        => Promise 객체는 다음 중 하나의 상태로 존재한다.
-            1) Fulfilled : 작업이 성공한 경우
-            2) Rejected : 작업이 실패한 경우, 에러를 반환한다.
-            3) Rending : 작업이 아직 진행 중인 경우
-        => 비동기 처리에서 Promise를 사용하는 이유
-            1) 비동기 함수는 실행 순서 보장 불가함. (코딩 순서 !== 처리 순서)
-            2) 콜백 지옥 : 비동기 함수를 동기식으로 처리하면 콜백 함수를 중첩해서 처리하여야 하고 중첩 정도가 올라갈 수록 소스 가독성이 현저히 떨어지는 현상
-             => 1(순서)을 처리했더니 2(콜백 지옥)의 문제가 발생! 
-    */
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="text/javascript">
+        /*
+        1. 프로미스(Promise)란?
+            => 비동기 처리를 추상화한 객체를 말하며, 비동기 처리를 조작하는 방법을 제공한다.
+            => 프로미스는 비동기 처리를 실행하고 그 처리가 끝난 후에 다음 처리를 실행하기 위한 용도로 사용한다.
+            => Promise 객체는 다음 중 하나의 상태로 존재한다.
+                1) Fulfilled : 작업이 성공한 경우
+                2) Rejected : 작업이 실패한 경우, 에러를 반환한다.
+                3) Rending : 작업이 아직 진행 중인 경우
+            => 비동기 처리에서 Promise를 사용하는 이유
+                1) 비동기 함수는 실행 순서 보장 불가함. (코딩 순서 !== 처리 순서)
+                2) 콜백 지옥 : 비동기 함수를 동기식으로 처리하면 콜백 함수를 중첩해서 처리하여야 하고 중첩 정도가 올라갈 수록 소스 가독성이 현저히 떨어지는 현상
+                => 1(순서)을 처리했더니 2(콜백 지옥)의 문제가 발생! 
+        */
 
-    /*
-        1. Promise 기본 
-           => Promise 객체를 통해 원하는 순서대로 단어를 출력하는 기본 로직
-        << 원래 실행 >>
-            Executed!!
-            World
-            Hello // Hello가 2000만큼 delay된 상태이므로 필연적으로 World가 먼저 나옴.
-        << Promise 실행 >>
-            Executed!!
-            Hello
-            World // promise의 다음 단계로 World를 지정했기 때문에 delay에도 불구하고 순서대로 출력!
-    */
-    var promise = new Promise(function(resolve, reject){
-        setTimeout(function () {
-            console.log("Hello");
-            resolve();
-        }, 1000);
-  
-    });
-
-    promise.then(function(){
-        console.log("World");
-    });
-
-    console.log("Executed!!");
-
-    /*
-        2. resolve 함수 
-          => resolve()는 처리가 성공적으로 완료되었을 때 수행되는 함수임
-          => resolve는 프로미스를 종료시키므로 반드시 promise 내 모든 함수가 종료되었을 이후에만 실행된다.
-          => resolve에 인자값을 전달한 경우 response(임의의 변수)로써 then 함수에서 인자값을 전달받는다.
-    */  
-
-    promise = new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            resolve("반갑습니다."); // resolve의 순서와 상관없이 promise 완료 후에 등장한다.
-            console.log("안녕하세요.");
-        }, 1500);
-
-    });
-
-    promise.then(function (str1) { // 인자값은 적당한 변수로 받는다.
-        console.log(str1);
-    });
-
-    console.log("함수 실행!!");    
-
-    /*
-        2. reject 함수
-            => reject()는 처리가 실행하였을 때 수행되는 함수임
-            => reject는 프로미스를 종료시키므로 반드시 promise 내 모든 함수가 종료되었을 이후에만 실행된다.
-            => reject에 인자값을 전달한 경우 response(임의의 변수)로써 then 함수에서 인자값을 전달받는다.
-
-        3. finally 함수
-            => finally()는 실패여부와 상관없이 무조건 실행되는 함수임
-    */
-    promise = new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            console.log("잠깐만.");
-            reject("에러가 발생했습니다."); // resolve의 순서와 상관없이 promise 완료 후에 등장한다.
-        }, 1500);
-
-    });
-
-    promise.then(function (response) { // 인자값은 적당한 변수로 받는다.
-        console.log("뜻밖의 성공?!");
-    }).catch(function(error){
-        console.log(error);// 단독 사용이라 출력됨...
-    }).finally(() => {
-        console.log("반드시 실행됩니다!!");
-    });
-
-    console.log("함수 다시 실행!!");    
-
-
-    /*
-        4. promise와 비동기 함수 사용
-        - 비동기 함수는 resolve, reject 콜백함수를 전달받는 인자를 가질 수 있음.
-        - resolve와 reject는 자체가 오류를 감지하는 함수는 아님. then 이후 실행되는 함수인지 catch로 실행되는 함수인지를 구분해주는 기준임.
-            => 단독 사용시에 역할은 then이나 catch냐의 차이 외에는 논리구조가 resolve와 reject가 동일하다고 보면 된다.
-    */
-
-    function funcOne(resolve, reject){
-        setTimeout(function(){
-            console.log("하이~~");
-            resolve();
-            reject("갑자기 끝남...");
-        }, 3000);
-    }
-
-    function funcTwo(resolve, reject){
-         setTimeout(function () {
-            console.log("방가워~~");
-            var success = false; // true로 설정해서 오류 발생하는 것 확인하기
-            success ? reject("갑자기 끝남...") : resolve();
-        }, 2000);       
-    }
-
-    function funcThree(resolve, reject) {
-        setTimeout(function () {
-            console.log("내이름은 프로미스야~~");
-            resolve("!!!!!");
-        }, 1000);
-    }
-
-    function funcEnd(response) {
-        console.log(response);
-    }
-
-    var promise = new Promise(function(resolve,reject){
-        funcOne(resolve, reject);
-    });
-
-    promise.then(function(response){
-        return new Promise(function(resolve, reject) {
-            funcTwo(resolve, reject);    
+        /*
+            1. Promise 기본 
+            => Promise 객체를 통해 원하는 순서대로 단어를 출력하는 기본 로직
+            << 원래 실행 >>
+                Executed!!
+                World
+                Hello // Hello가 2000만큼 delay된 상태이므로 필연적으로 World가 먼저 나옴.
+            << Promise 실행 >>
+                Executed!!
+                Hello
+                World // promise의 다음 단계로 World를 지정했기 때문에 delay에도 불구하고 순서대로 출력!
+        */
+        var promise = new Promise(function(resolve, reject){
+            setTimeout(function () {
+                console.log("Hello");
+                resolve();
+            }, 1000);
+    
         });
-    }).then(function (response) {
-        return new Promise(function (resolve, reject) {
-            funcThree(resolve, reject);
-        });
-    }).then(function(response){
-        funcEnd(response)
-    }).catch(function (error) {
-        console.log(error);
-    });
-    /*
-        5. promise를 반환하는 비동기 함수 사용
-        - 비동기 함수는 프로미스 객체를 생성하여 반환할 수 있음.
-        - 객체 생성 반환 형태를 사용하는 이유
-            1) Promise는 객체지만 선언시에 바로 작동하는 함수에 가까움.
-            2) 그러나 객체 선언 즉시 변수 등으로 할당하지 않는 한 바로 메모리에서 증발해버리는 문제가 있다.
-            3) 그렇다고 각 객체마다 변수를 할당하여 메모리 할당 부하를 발생시킬 필요는 없으므로 함수 내에 묶어 두게 된다.
-            4) then catch finally의 순차적으로 진행됨에 따라 선언하고 폐기하는 작업을 반복하되 메모리 할당을 최소화하게 된다.
-    */
 
-    function welcome(){
-        return new Promise(function(resolve, reject){
+        promise.then(function(){
+            console.log("World");
+        });
+
+        console.log("Executed!!");
+
+        /*
+            2. resolve 함수 
+            => resolve()는 처리가 성공적으로 완료되었을 때 수행되는 함수임
+            => resolve는 프로미스를 종료시키므로 반드시 promise 내 모든 함수가 종료되었을 이후에만 실행된다.
+            => resolve에 인자값을 전달한 경우 response(임의의 변수)로써 then 함수에서 인자값을 전달받는다.
+        */  
+
+        promise = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                resolve("반갑습니다."); // resolve의 순서와 상관없이 promise 완료 후에 등장한다.
+                console.log("안녕하세요.");
+            }, 1500);
+
+        });
+
+        promise.then(function (str1) { // 인자값은 적당한 변수로 받는다.
+            console.log(str1);
+        });
+
+        console.log("함수 실행!!");    
+
+        /*
+            2. reject 함수
+                => reject()는 처리가 실행하였을 때 수행되는 함수임
+                => reject는 프로미스를 종료시키므로 반드시 promise 내 모든 함수가 종료되었을 이후에만 실행된다.
+                => reject에 인자값을 전달한 경우 response(임의의 변수)로써 then 함수에서 인자값을 전달받는다.
+
+            3. finally 함수
+                => finally()는 실패여부와 상관없이 무조건 실행되는 함수임
+        */
+        promise = new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                console.log("잠깐만.");
+                reject("에러가 발생했습니다."); // resolve의 순서와 상관없이 promise 완료 후에 등장한다.
+            }, 1500);
+
+        });
+
+        promise.then(function (response) { // 인자값은 적당한 변수로 받는다.
+            console.log("뜻밖의 성공?!");
+        }).catch(function(error){
+            console.log(error);// 단독 사용이라 출력됨...
+        }).finally(() => {
+            console.log("반드시 실행됩니다!!");
+        });
+
+        console.log("함수 다시 실행!!");    
+
+
+        /*
+            4. promise와 비동기 함수 사용
+            - 비동기 함수는 resolve, reject 콜백함수를 전달받는 인자를 가질 수 있음.
+            - resolve와 reject는 자체가 오류를 감지하는 함수는 아님. then 이후 실행되는 함수인지 catch로 실행되는 함수인지를 구분해주는 기준임.
+                => 단독 사용시에 역할은 then이나 catch냐의 차이 외에는 논리구조가 resolve와 reject가 동일하다고 보면 된다.
+        */
+
+        function funcOne(resolve, reject){
             setTimeout(function(){
-                console.log("1. Greeting!!");
+                console.log("하이~~");
                 resolve();
-            }, 300);
-        });
-    }
-
-    function to(){
-        return new Promise(function(resolve, reject){
-            setTimeout(function () {
-                console.log("2. For your convenient...");
-                resolve();
-            }, 200);
-        });
-    }
-
-    function world() {
-        return new Promise(function (resolve, reject) {
-            setTimeout(function () {
-                console.log("3. We made Promise...");
-                resolve("!!!(YELL)!!!");
-            }, 100);
-        });
-    }
-
-    function end(response){
-        console.log(response);
-    }
-
-    welcome().then(function(response){
-        return to();
-    }).then(function(response){
-        return world();
-    }).then(function(response){
-        end(response);//
-    });
-
-    console.log("Executed!!");
-
-    var App = new Vue({
-        el: "#app",
-        data: {
-            message: "Hello",
-            valueSwitched: false
-        },
-        methods: {
-            valueSwitching: function () {
-                this.valueSwitched = this.valueSwitched ? false : true;
-            }
+                reject("갑자기 끝남...");
+            }, 3000);
         }
-    }); 
-</script>
 
+        function funcTwo(resolve, reject){
+            setTimeout(function () {
+                console.log("방가워~~");
+                var success = false; // true로 설정해서 오류 발생하는 것 확인하기
+                success ? reject("갑자기 끝남...") : resolve();
+            }, 2000);       
+        }
+
+        function funcThree(resolve, reject) {
+            setTimeout(function () {
+                console.log("내이름은 프로미스야~~");
+                resolve("!!!!!");
+            }, 1000);
+        }
+
+        function funcEnd(response) {
+            console.log(response);
+        }
+
+        var promise = new Promise(function(resolve,reject){
+            funcOne(resolve, reject);
+        });
+
+        promise.then(function(response){
+            return new Promise(function(resolve, reject) {
+                funcTwo(resolve, reject);    
+            });
+        }).then(function (response) {
+            return new Promise(function (resolve, reject) {
+                funcThree(resolve, reject);
+            });
+        }).then(function(response){
+            funcEnd(response)
+        }).catch(function (error) {
+            console.log(error);
+        });
+        /*
+            5. promise를 반환하는 비동기 함수 사용
+            - 비동기 함수는 프로미스 객체를 생성하여 반환할 수 있음.
+            - 객체 생성 반환 형태를 사용하는 이유
+                1) Promise는 객체지만 선언시에 바로 작동하는 함수에 가까움.
+                2) 그러나 객체 선언 즉시 변수 등으로 할당하지 않는 한 바로 메모리에서 증발해버리는 문제가 있다.
+                3) 그렇다고 각 객체마다 변수를 할당하여 메모리 할당 부하를 발생시킬 필요는 없으므로 함수 내에 묶어 두게 된다.
+                4) then catch finally의 순차적으로 진행됨에 따라 선언하고 폐기하는 작업을 반복하되 메모리 할당을 최소화하게 된다.
+        */
+
+        function welcome(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function(){
+                    console.log("1. Greeting!!");
+                    resolve();
+                }, 300);
+            });
+        }
+
+        function to(){
+            return new Promise(function(resolve, reject){
+                setTimeout(function () {
+                    console.log("2. For your convenient...");
+                    resolve();
+                }, 200);
+            });
+        }
+
+        function world() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function () {
+                    console.log("3. We made Promise...");
+                    resolve("!!!(YELL)!!!");
+                }, 100);
+            });
+        }
+
+        function end(response){
+            console.log(response);
+        }
+
+        welcome().then(function(response){
+            return to();
+        }).then(function(response){
+            return world();
+        }).then(function(response){
+            end(response);//
+        });
+
+        console.log("Executed!!");
+
+        var App = new Vue({
+            el: "#app",
+            data: {
+                message : "이 예제의 내용은 console(개발자 도구)로만 확인하실 수 있습니다."
+            }
+        }); 
+    </script>
 </html>
