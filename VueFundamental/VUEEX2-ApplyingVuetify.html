@@ -42,13 +42,12 @@
               </div>
         </div>
     </body>
-    <!-- Load polyfills to support older browsers -->
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.3.19/dist/vuetify.min.js"></script>
     <!-- Load Vue followed by BootstrapVue -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue.min.js" integrity="sha512-8kPdh/QOb9Lc2e3uQyfHWcqLq0WuyQ0awXGfKkXJw22ryOGhz6xuKnKdorhN1+2j1j6YGL0SnCU292v/zB10zg==" crossorigin="anonymous"></script>
-
     <!-- Load the following for BootstrapVueIcons support -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.19.0/bootstrap-vue-icons.min.js" integrity="sha512-jfzwfsCdubyM9aVqsaQZd2wafJ8N/XcuRu1xUSAseSRemHfe+eqwSXSi86wSoywtvgF92xgUoExoegOafO6I4Q==" crossorigin="anonymous"></script>
     <script>
@@ -60,8 +59,17 @@
         */
             var App = new Vue({
                 el: "#app",
+                vuetify: new Vuetify(),
                 data: {
-                    perPage: 3,
+                    circle: true,
+                    disabled: false,
+                    length: 20,
+                    nextIcon: 'navigate_next',
+                    nextIcons: ['mdi-chevron-right', 'mdi-arrow-right', 'mdi-menu-right'],
+                    prevIcon: 'navigate_before',
+                    prevIcons: ['mdi-chevron-left', 'mdi-arrow-left', 'mdi-menu-left'],
+                    page: 1,
+                    totalVisible: 5,
                     currentPage: 1,
                     items: [
                     { id: 1, first_name: 'Fred', last_name: 'Flintstone' },
