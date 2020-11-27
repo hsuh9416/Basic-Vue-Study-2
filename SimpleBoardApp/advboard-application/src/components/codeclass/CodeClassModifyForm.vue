@@ -1,5 +1,24 @@
 <template>
-    
+    <form @submit.prevent="onSubmit">
+        <table>
+            <tr>
+                <td>코드그룹코드</td>
+                <td>
+                    <input :value="codeClass.groupCode" type="text" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>코드그룹명</td>
+                <td>
+                    <input v-model="groupName" type="text">
+                </td>
+            </tr>
+        </table>
+        <div>
+            <button type="submit">수정</button>
+            <router-link :to="{ name: 'CodeClassReadPage', params: { groupCode: codeClass.groupCode }}">취소</router-link>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -18,7 +37,8 @@ export default {
     },
     methods:{
         onSubmit(){
-
+            const { groupName } = this
+            this.$emit('submit', { groupName })
         }
     },
     created() {
