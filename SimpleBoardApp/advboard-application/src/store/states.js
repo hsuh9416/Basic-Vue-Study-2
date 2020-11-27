@@ -2,5 +2,7 @@ export default {
     accessToken : '',
     myinfo: null,
     codeClasses: [],
-    codeClass: null
+    codeClass: null,
+    codeDetails: [],
+    codeDetail: null
 }

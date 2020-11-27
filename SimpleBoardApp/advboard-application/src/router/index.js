@@ -4,7 +4,7 @@ import { HomeRouters } from '@/router/home'
 import { AuthRouters } from '@/router/auth'
 import { MemberRouters } from '@/router/member'
 import { CodeClassRouters } from '@/router/codeclass'
-
+import { CodeDetailRouters} from '@/router/codedetail'
 Vue.use(Router)
 
 export default new Router({
@@ -13,6 +13,7 @@ export default new Router({
     ...HomeRouters,
     ...AuthRouters,
     ...MemberRouters,
-    ...CodeClassRouters
+    ...CodeClassRouters,
+    ...CodeDetailRouters
   ]
 })
