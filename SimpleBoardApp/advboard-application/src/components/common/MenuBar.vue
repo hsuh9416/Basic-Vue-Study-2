@@ -13,6 +13,9 @@
                         <td width="120">
                             <router-link :to="{ name : 'CodeDetailListPage' }">코드관리</router-link>
                         </td>   
+                        <td width="120">
+                            <router-link :to="{ name : 'MemberListPage' }">회원관리</router-link>
+                        </td>   
                     </template>
                 </template>
             </tr>

@@ -5,5 +5,7 @@ export default {
     codeClass: null,
     codeDetails: [],
     codeDetail: null,
-    jobCodes: []
+    jobCodes: [],
+    members: [],
+    member: null
 }
