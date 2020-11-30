@@ -2,6 +2,7 @@
     <div align="center">
         <h2>로그인</h2>
         <signin-form @submit="onSubmit"/>
+        <p><router-link :to="{ name: 'Signup' }">회원가입</router-link></p>
     </div>
 </template>
 

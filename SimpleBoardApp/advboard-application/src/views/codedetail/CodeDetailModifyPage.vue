@@ -1,5 +1,12 @@
 <template>
-    
+    <div align="center">
+        <h2>코드 수정</h2>
+        <code-detail-modify-form v-if="codeClasses && codeDetail"
+            :codeDetail="codeDetail"
+            :codeClasses="codeClasses"
+            @submit="onSubmit"/>
+        <p v-else>loading...</p>
+    </div>
 </template>
 
 <script>

@@ -34,7 +34,7 @@ export const CodeClassRouters = [
         name: 'CodeDetailRegisterPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeDetailRegisterPage,
             footer: Footer
         },
@@ -53,11 +53,12 @@ export const CodeClassRouters = [
         name: 'CodeDetailReadPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeDetailReadPage,
             footer: Footer
         },
         props: {
+            // default: 개별 component에 정의된 props를 사용한다.
             default: true
         },
         beforeEnter( to, from, next ){
@@ -75,7 +76,7 @@ export const CodeClassRouters = [
         name: 'CodeDetailModifyPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeDetailModifyPage,
             footer: Footer
         },

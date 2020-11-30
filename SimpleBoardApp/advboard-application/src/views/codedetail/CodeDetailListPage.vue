@@ -14,7 +14,7 @@ export default {
     name: 'CodeDetailListPage',
     components: { CodeDetailList },
     computed: {
-        ...mapState('codeDetails')
+        ...mapState(['codeDetails'])
     },
     mounted(){
         this.fetchCodeDetailList()

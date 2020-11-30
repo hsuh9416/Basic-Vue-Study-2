@@ -8,11 +8,12 @@ import {
     FETCH_CODECLASS_LIST,
     FETCH_CODECLASS,
     FETCH_CODEDETAIL_LIST,
-    FETCH_CODEDETAIL
+    FETCH_CODEDETAIL,
+    FETCH_JOBCODE_LIST
 } from './mutation-types'
 
 export default {
-    signin({ commit }, payload){
+    signin({ commit },payload){
         return api.post(`/api/authenticate?username=${payload.userid}&password=${payload.password}`,{
             username: payload.userid,
             password: payload.password
@@ -44,8 +45,8 @@ export default {
             commit(FETCH_CODECLASS_LIST, res.data)
         })
     },
-    fetchCodeClass({ commit }, classCode){
-        return api.get(`/codegroups/${classCode}`)
+    fetchCodeClass({ commit }, groupCode){
+        return api.get(`/codegroups/${groupCode}`)
         .then(res => {
             commit(FETCH_CODECLASS, res.data)
         })
@@ -61,6 +62,12 @@ export default {
         return api.get(`/codedetails/${groupCode}/${codeValue}`)
         .then(res => {
             commit(FETCH_CODEDETAIL, res.data)
+        })
+    },
+    fetchJobCodeList({ commit }){
+        return api.get('/codes/job')
+        .then( res => {
+            commit(FETCH_JOBCODE_LIST, res.data)
         })
     }
 }

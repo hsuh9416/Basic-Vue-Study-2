@@ -14,7 +14,7 @@
                 </td>
             </tr>
 
-            <tr v-else v-for="codeDetail in codeDetails" :key="`${cpdeDetail.groupCode}-${codeDetail.codeValue}`">
+            <tr v-else v-for="codeDetail in codeDetails" :key="`${codeDetail.groupCode}-${codeDetail.codeValue}`">
                 <td align="center">{{codeDetail.groupValue}}</td>
                 <td align="center">{{codeDetail.codeValue}}</td>
                 <td align="left">

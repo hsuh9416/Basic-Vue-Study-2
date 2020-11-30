@@ -12,7 +12,7 @@ import CodeDetailRegisterForm from '@/components/codedetail/CodeDetailRegisterFo
 import { mapState, mapActions } from 'vuex'
 
 export default {
-    name: ' { CodeDetailRegisterForm }',
+    name: 'CodeDetailRegisterForm',
     components: { CodeDetailRegisterForm },
     computed: {
         ...mapState([
@@ -27,7 +27,7 @@ export default {
         })
     },
     methods: {
-        onSubmit( payload){
+        onSubmit(payload){
             const { groupCode, codeValue, codeName } = payload
             api.post('/codedetails', { groupCode, codeValue, codeName })
             .then( res => {

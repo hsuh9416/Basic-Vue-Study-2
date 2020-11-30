@@ -34,7 +34,7 @@ export const CodeClassRouters = [
         name: 'CodeClassRegisterPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeClassRegisterPage,
             footer: Footer
         },
@@ -53,7 +53,7 @@ export const CodeClassRouters = [
         name: 'CodeClassReadPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeClassReadPage,
             footer: Footer
         },
@@ -75,7 +75,7 @@ export const CodeClassRouters = [
         name: 'CodeClassModifyPage',
         components:{
             header: MainHeader,
-            menu: menubar,
+            menu: MenuBar,
             default: CodeClassModifyPage,
             footer: Footer
         },

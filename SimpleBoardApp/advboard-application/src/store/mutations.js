@@ -6,7 +6,8 @@ import {
     FETCH_CODECLASS_LIST,
     FETCH_CODECLASS,
     FETCH_CODEDETAIL_LIST,
-    FETCH_CODEDETAIL
+    FETCH_CODEDETAIL,
+    FETCH_JOBCODE_LIST
 } from './mutation-types'
 
 import api from '@/api'
@@ -49,5 +50,8 @@ export default {
     },
     [FETCH_CODEDETAIL](state, codeDetail){
         state.codeDetail = codeDetail
+    },
+    [FETCH_JOBCODE_LIST](state, jobCodes){
+        state.jobCodes = jobCodes
     }
 }
