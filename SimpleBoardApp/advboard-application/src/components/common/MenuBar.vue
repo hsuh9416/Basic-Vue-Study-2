@@ -15,9 +15,13 @@
                         </td>   
                         <td width="120">
                             <router-link :to="{ name : 'MemberListPage' }">회원관리</router-link>
-                        </td>   
+                        </td>  
+                           
                     </template>
                 </template>
+                <td width="120">
+                    <router-link :to="{ name : 'BoardListPage' }">회원게시판</router-link>
+                </td>
             </tr>
         </table>
     </div>

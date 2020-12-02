@@ -7,5 +7,7 @@ export default {
     codeDetail: null,
     jobCodes: [],
     members: [],
-    member: null
+    member: null,
+    boards: [],
+    board: null
 }

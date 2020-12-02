@@ -2,20 +2,19 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import AdminSetupPage from '@/views/member/AdminSetupPage'
-import MemberRegisterPage from '@/views/member/MemberRegisterPage'
-import MemberListPage from '@/views/member/MemberListPage'
-import MemberModifyPage from '@/views/member/MemberModifyPage'
-import MemberReadPage from '@/views/member/MemberReadPage'
+import BoardRegisterPage from '@/views/board/BoardRegisterPage'
+import BoardListPage from '@/views/board/BoardListPage'
+import BoardModifyPage from '@/views/board/BoardModifyPage'
+import BoardReadPage from '@/views/board/BoardReadPage'
 
-export const MemberRouters = [
+export const BoardRouters = [
     {
-        path: '/user',
-        name: 'MemberListPage',
+        path: '/board',
+        name: 'BoardListPage',
         components: {
             header: MainHeader,
             menu: MenuBar,
-            default: MemberListPage,
+            default: BoardListPage,
             footer: Footer
         },
         beforeEnter (to ,from, next){
@@ -28,22 +27,12 @@ export const MemberRouters = [
         }
     }, 
     {
-        path: '/user/setup',
-        name: 'AdminSetupPage',
+        path: '/board/register',
+        name: 'BoardRegisterPage',
         components: {
             header: MainHeader,
             menu: MenuBar,
-            default: AdminSetupPage,
-            footer: Footer
-        }
-    },
-    {
-        path: '/user/register',
-        name: 'MemberRegisterPage',
-        components: {
-            header: MainHeader,
-            menu: MenuBar,
-            default: MemberRegisterPage,
+            default: BoardRegisterPage,
             footer: Footer
         },
         beforeEnter (to ,from, next){
@@ -56,12 +45,12 @@ export const MemberRouters = [
         }
     },
     {
-        path: '/user/:userNo',
-        name: 'MemberReadPage',
+        path: '/board/:boardNo',
+        name: 'BoardReadPage',
         components: {
             header: MainHeader,
             menu: MenuBar,
-            default: MemberReadPage,
+            default: BoardReadPage,
             footer: Footer
         },
         props:{
@@ -77,12 +66,12 @@ export const MemberRouters = [
         }
     },
     {
-        path: '/user/:userNo/modify',
-        name: 'MemberModifyPage',
+        path: '/board/:boardNo/modify',
+        name: 'BoardModifyPage',
         components: {
             header: MainHeader,
             menu: MenuBar,
-            default: MemberModifyPage,
+            default: BoardModifyPage,
             footer: Footer
         },
         props:{

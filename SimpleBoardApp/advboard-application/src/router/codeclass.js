@@ -5,7 +5,7 @@ import MenuBar from '@/components/common/MenuBar'
 import CodeClassListPage from '@/views/codeclass/CodeClassListPage'
 import CodeClassRegisterPage from '@/views/codeclass/CodeClassRegisterPage'
 import CodeClassModifyPage from '@/views/codeclass/CodeClassModifyPage'
-import CodeClassReadPage from '@/pages/codeclass/CodeClassReadPage'
+import CodeClassReadPage from '@/views/codeclass/CodeClassReadPage'
 
 export const CodeClassRouters = [
 

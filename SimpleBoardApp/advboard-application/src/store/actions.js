@@ -11,7 +11,9 @@ import {
     FETCH_CODEDETAIL,
     FETCH_JOBCODE_LIST,
     FETCH_MEMBER_LIST,
-    FETCH_MEMBER
+    FETCH_MEMBER,
+    FETCH_BOARD_LIST,
+    FETCH_BOARD
 } from './mutation-types'
 
 export default {
@@ -82,6 +84,18 @@ export default {
         return api.get(`/users/${userNo}`)
         .then( res => {
             commit(FETCH_MEMBER, res.data)
+        })
+    },
+    fetchBoardList({ commit }){
+        return api.get('/boards')
+        .then( res => {
+            commit(FETCH_BOARD_LIST, res.data)
+        })
+    },
+    fetchBoard({ commit }, boardNo){
+        return api.get(`/boards/${boardNo}`)
+        .then( res => {
+            commit(FETCH_BOARD, res.data)
         })
     }
 }
