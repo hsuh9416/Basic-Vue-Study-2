@@ -6,6 +6,7 @@ import { MemberRouters } from '@/router/member'
 import { CodeClassRouters } from '@/router/codeclass'
 import { CodeDetailRouters} from '@/router/codedetail'
 import { BoardRouters } from '@/router/board'
+import { NoticeRouters } from '@/router/notice'
 
 Vue.use(Router)
 
@@ -17,6 +18,7 @@ export default new Router({
     ...MemberRouters,
     ...CodeClassRouters,
     ...CodeDetailRouters,
-    ...BoardRouters
+    ...BoardRouters,
+    ...NoticeRouters
   ]
 })

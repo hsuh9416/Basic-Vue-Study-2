@@ -16,11 +16,16 @@
                         <td width="120">
                             <router-link :to="{ name : 'MemberListPage' }">회원관리</router-link>
                         </td>  
-                           
+                        <td width="120">
+                            <router-link :to="{ name : 'NoticeListPage' }">공지사항관리</router-link>
+                        </td>
                     </template>
                 </template>
                 <td width="120">
                     <router-link :to="{ name : 'BoardListPage' }">회원게시판</router-link>
+                </td>
+                <td width="120">
+                    <router-link :to="{ name : 'NoticeListPage' }">공지사항</router-link>
                 </td>
             </tr>
         </table>

@@ -9,5 +9,7 @@ export default {
     members: [],
     member: null,
     boards: [],
-    board: null
+    board: null,
+    notices: [],
+    notice: null
 }

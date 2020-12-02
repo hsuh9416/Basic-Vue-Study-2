@@ -13,7 +13,9 @@ import {
     FETCH_MEMBER_LIST,
     FETCH_MEMBER,
     FETCH_BOARD_LIST,
-    FETCH_BOARD
+    FETCH_BOARD,
+    FETCH_NOTICE_LIST,
+    FETCH_NOTICE
 } from './mutation-types'
 
 export default {
@@ -96,6 +98,18 @@ export default {
         return api.get(`/boards/${boardNo}`)
         .then( res => {
             commit(FETCH_BOARD, res.data)
+        })
+    },
+    fetchNoticeList({ commit }){
+        return api.get('/notices')
+        .then( res => {
+            commit(FETCH_NOTICE_LIST, res.data)
+        })
+    },
+    fetchNotice({ commit }, noticeNo){
+        return api.get(`/notices/${noticeNo}`)
+        .then( res => {
+            commit(FETCH_NOTICE, res.data)
         })
     }
 }
