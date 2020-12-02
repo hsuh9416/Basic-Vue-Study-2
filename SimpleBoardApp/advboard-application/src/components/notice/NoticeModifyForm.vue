@@ -1,5 +1,30 @@
 <template>
-    
+    <form @submit.prevent="onSubmit">
+        <table>
+            <tr>
+                <td>번호</td>
+                <td>
+                    <input type="text" :value="notice.noticeNo" disabled>
+                </td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td>
+                    <input type="text" v-model="title">
+                </td>
+            </tr>
+            <tr>
+                <td>내용</td>
+                <td>
+                    <textarea v-model="content" rows="5"></textarea>
+                </td>
+            </tr>            
+        </table>
+        <div>
+            <button type="submit">수정</button>
+            <router-link :to="{name: 'NoticeReadPage', params: {noticeNo: notice.noticeNo.toString()}}">취소</router-link>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -19,7 +44,8 @@ export default {
     },
     methods: {
         onSubmit(){
-
+            const { title, content} = this
+            this.$emit('submit',{title, content})
         }
     },
     created(){
