@@ -16,14 +16,6 @@ export const BoardRouters = [
             menu: MenuBar,
             default: BoardListPage,
             footer: Footer
-        },
-        beforeEnter (to ,from, next){
-            const { isAdmin } = store.getters
-            if(!isAdmin){
-                alert('관리자 권한이 필요합니다.')
-                next({ name: 'Signin' })
-            }
-            next()
         }
     }, 
     {
@@ -36,9 +28,9 @@ export const BoardRouters = [
             footer: Footer
         },
         beforeEnter (to ,from, next){
-            const { isAdmin } = store.getters
-            if(!isAdmin){
-                alert('관리자 권한이 필요합니다.')
+            const { isAuthorized } = store.getters
+            if(!isAuthorized){
+                alert('로그인이 필요합니다.')
                 next({ name: 'Signin' })
             }
             next()
@@ -55,14 +47,6 @@ export const BoardRouters = [
         },
         props:{
             default: true
-        },
-        beforeEnter (to ,from, next){
-            const { isAdmin } = store.getters
-            if(!isAdmin){
-                alert('관리자 권한이 필요합니다.')
-                next({ name: 'Signin' })
-            }
-            next()
         }
     },
     {
@@ -78,12 +62,28 @@ export const BoardRouters = [
             default: true
         },
         beforeEnter (to ,from, next){
-            const { isAdmin } = store.getters
-            if(!isAdmin){
-                alert('관리자 권한이 필요합니다.')
+            const { isAuthorized } = store.getters
+            if(!isAuthorized){
+                alert('로그인이 필요합니다.')
                 next({ name: 'Signin' })
             }
-            next()
+            // 인증받은 사용자 중에서도 작성자만 수정 가능하므로 그 후속 처리를 수행함.
+            store.dispatch('fetchBoard', to.params.boardNo)
+            .then(() => {
+                const board = store.state.board
+                const isAuthor = board.writer === store.state.myinfo.userId
+                if(isAuthor){
+                    next()
+                }else{
+                    alert('게시물의 작성자만 게시물을 수정할 수 있습니다.')
+                    next(false)// router 요청을 거절함
+                }
+            })
+            .catch( err => {
+                alert('오류로 인하여 게시글 수정이 불가능합니다.')
+                console.log(err.response.data.message)
+                next(false)
+            })
         }
     }
 ]
