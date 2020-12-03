@@ -2,11 +2,15 @@
     <div align="center">
         <table>
             <tr>
+                <!-- 공통 -->
                 <td width="120">
                     <router-link :to="{ name : 'Home' }">홈</router-link>
                 </td>
-                <template v-if="isAuthorized">
-                    <template v-if="isAdmin">
+                <td width="120">
+                    <router-link :to="{ name : 'BoardListPage' }">회원게시판</router-link>
+                </td>
+                <!-- 관리자 전용 -->
+                <template v-if="isAdmin">
                         <td width="120">
                             <router-link :to="{ name : 'CodeClassListPage' }">코드그룹관리</router-link>
                         </td>  
@@ -22,17 +26,27 @@
                         <td width="120">
                             <router-link :to="{ name : 'ItemListPage' }">상품관리</router-link>
                         </td>
+                </template>
+
+                <!-- 일반 -->
+                <template v-else>
+                    <!-- 일반 공통 -->
+                    <td width="120">
+                        <router-link :to="{ name : 'NoticeListPage' }">공지사항</router-link>
+                    </td>
+                    <td width="120">
+                        <router-link :to="{ name : 'ItemListPage' }">상품</router-link>
+                    </td>
+                    <!-- 회원 전용 -->
+                    <template v-if="isAuthorized">
+                        <td width="120">
+                            <router-link :to="{ name : 'CoinChargeRegisterPage' }">코인충전</router-link>
+                        </td>
+                        <td width="120">
+                            <router-link :to="{ name : 'CoinChargeListPage' }">충전내역</router-link>
+                        </td>
                     </template>
                 </template>
-                <td width="120">
-                    <router-link :to="{ name : 'BoardListPage' }">회원게시판</router-link>
-                </td>
-                <td width="120">
-                    <router-link :to="{ name : 'NoticeListPage' }">공지사항</router-link>
-                </td>
-                <td width="120">
-                    <router-link :to="{ name : 'ItemListPage' }">상품</router-link>
-                </td>
             </tr>
         </table>
     </div>

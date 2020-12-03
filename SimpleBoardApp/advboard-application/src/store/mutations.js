@@ -15,7 +15,8 @@ import {
     FETCH_NOTICE_LIST,
     FETCH_NOTICE,
     FETCH_ITEM_LIST,
-    FETCH_ITEM
+    FETCH_ITEM,
+    FETCH_CHARGECOIN_LIST
 } from './mutation-types'
 
 import api from '@/api'
@@ -85,5 +86,8 @@ export default {
     },
     [FETCH_ITEM](state, item){
         state.item = item
+    },
+    [FETCH_CHARGECOIN_LIST](state, chargeCoins){
+        state.chargeCoins = chargeCoins
     }
 }

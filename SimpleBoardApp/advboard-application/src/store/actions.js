@@ -17,7 +17,8 @@ import {
     FETCH_NOTICE_LIST,
     FETCH_NOTICE,
     FETCH_ITEM_LIST,
-    FETCH_ITEM
+    FETCH_ITEM,
+    FETCH_CHARGECOIN_LIST
 } from './mutation-types'
 
 export default {
@@ -124,6 +125,12 @@ export default {
         return api.get(`/items/${itemId}`)
         .then( res => {
             commit(FETCH_ITEM, res.data)
+        })
+    },
+    fetchChargeCoinList({ commit }){
+        return api.get('/coins')
+        .then(res => {
+            commit(FETCH_CHARGECOIN_LIST, res.data )
         })
     }
 }
