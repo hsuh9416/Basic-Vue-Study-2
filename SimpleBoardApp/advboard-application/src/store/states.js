@@ -17,5 +17,8 @@ export default {
     chargeCoins: [],
     payCoins: [],
     userItems: [],
-    userItem: null
+    userItem: null,
+    pdsItems: [],
+    pdsItem: null,
+    attachments: []
 }

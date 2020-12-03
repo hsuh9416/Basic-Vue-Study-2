@@ -26,6 +26,9 @@
                         <td width="120">
                             <router-link :to="{ name : 'ItemListPage' }">상품관리</router-link>
                         </td>
+                        <td width="120">
+                            <router-link :to="{ name : 'PdsListPage' }">공개자료실관리</router-link>
+                        </td>
                 </template>
 
                 <!-- 일반 -->
@@ -37,6 +40,9 @@
                     <td width="120">
                         <router-link :to="{ name : 'ItemListPage' }">상품</router-link>
                     </td>
+                    <td width="120">
+                            <router-link :to="{ name : 'PdsListPage' }">공개자료실</router-link>
+                        </td>
                     <!-- 회원 전용 -->
                     <template v-if="isAuthorized">
                         <td width="120">

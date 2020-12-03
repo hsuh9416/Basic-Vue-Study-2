@@ -21,7 +21,13 @@ import {
     FETCH_CHARGECOIN_LIST,
     FETCH_PAYCOIN_LIST,
     FETCH_USERITEM_LIST,
-    FETCH_USERITEM
+    FETCH_USERITEM,
+    FETCH_PDS_LIST,
+    FETCH_PDS,
+    FETCH_ATTACH_LIST,
+    ADD_ATTACH,
+    RESET_ATTACH,
+    REMOVE_ATTACH
 } from './mutation-types'
 
 export default {
@@ -153,5 +159,47 @@ export default {
         .then(res => {
             commit(FETCH_USERITEM, res.data )
         })
+    },
+    fetchPdsList({ commit }){
+        return api.get('/pds')
+        .then(res => {
+            commit(FETCH_PDS_LIST, res.data )
+        })
+    },
+    fetchPds({ commit }, itemId){
+        return api.get(`/pds/${itemId}`)
+        .then(res => {
+            commit(FETCH_PDS, res.data)
+
+            return api.get(`/pds/attach/${itemId}`)
+        }).then(res => {
+            commit(FETCH_ATTACH_LIST,res.data)
+        })
+    },
+    addAttach({ commit },file){
+        let formData = new FormData()
+
+        formData.append('file',file)
+
+        return api.post(`/pds/upload`,formData,
+            {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            }
+        )
+        .then(res => {
+            commit(ADD_ATTACH, res.data )
+        })
+        .catch(err =>{
+            alert('오류로 인하여 파일 첨부에 실패하였습니다!')
+            console.log(err.response.data.message)
+        })
+    },
+    resetAttach({ commit }){
+        commit(RESET_ATTACH)
+    },
+    removeAttach({ commit },index){
+        commit(REMOVE_ATTACH, index )
     }
 }

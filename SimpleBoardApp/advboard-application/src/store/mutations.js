@@ -19,7 +19,13 @@ import {
     FETCH_CHARGECOIN_LIST,
     FETCH_PAYCOIN_LIST,
     FETCH_USERITEM_LIST,
-    FETCH_USERITEM
+    FETCH_USERITEM,
+    FETCH_PDS_LIST,
+    FETCH_PDS,
+    FETCH_ATTACH_LIST,
+    ADD_ATTACH,
+    RESET_ATTACH,
+    REMOVE_ATTACH
 } from './mutation-types'
 
 import api from '@/api'
@@ -101,5 +107,23 @@ export default {
     },
     [FETCH_USERITEM](state, userItem){
         state.userItem = userItem
+    },
+    [FETCH_PDS_LIST](state, pdsItems){
+        state.pdsItems = pdsItems
+    },
+    [FETCH_PDS](state, pdsItem){
+        state.pdsItem = pdsItem
+    },
+    [FETCH_ATTACH_LIST](state, attachments){
+        state.attachments = attachments
+    },
+    [ADD_ATTACH](state, attach){
+        state.attachments.push(attach)
+    },
+    [RESET_ATTACH](state){
+        state.attachments = []
+    },
+    [REMOVE_ATTACH](state, index){
+        state.attachments.splice(index, 1)
     }
 }
