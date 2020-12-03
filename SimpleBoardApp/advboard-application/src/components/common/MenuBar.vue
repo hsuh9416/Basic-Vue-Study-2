@@ -45,6 +45,12 @@
                         <td width="120">
                             <router-link :to="{ name : 'CoinChargeListPage' }">충전내역</router-link>
                         </td>
+                        <td width="120">
+                            <router-link :to="{ name : 'UserItemListPage' }">구매상품</router-link>
+                        </td>
+                        <td width="120">
+                            <router-link :to="{ name : 'CoinPayListPage' }">구매내역</router-link>
+                        </td>
                     </template>
                 </template>
             </tr>

@@ -14,5 +14,8 @@ export default {
     notice: null,
     items: [],
     item: null,
-    chargeCoins: []
+    chargeCoins: [],
+    payCoins: [],
+    userItems: [],
+    userItem: null
 }

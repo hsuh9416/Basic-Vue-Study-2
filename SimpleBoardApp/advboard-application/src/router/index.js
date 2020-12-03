@@ -9,6 +9,7 @@ import { BoardRouters } from '@/router/board'
 import { NoticeRouters } from '@/router/notice'
 import { ItemRouters } from '@/router/item'
 import { CoinRouters } from '@/router/coin'
+import { UserItemRouters } from '@/router/useritem'
 
 Vue.use(Router)
 
@@ -23,6 +24,7 @@ export default new Router({
     ...BoardRouters,
     ...NoticeRouters,
     ...ItemRouters,
-    ...CoinRouters
+    ...CoinRouters,
+    ...UserItemRouters
   ]
 })

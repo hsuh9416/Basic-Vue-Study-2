@@ -18,7 +18,10 @@ import {
     FETCH_NOTICE,
     FETCH_ITEM_LIST,
     FETCH_ITEM,
-    FETCH_CHARGECOIN_LIST
+    FETCH_CHARGECOIN_LIST,
+    FETCH_PAYCOIN_LIST,
+    FETCH_USERITEM_LIST,
+    FETCH_USERITEM
 } from './mutation-types'
 
 export default {
@@ -131,6 +134,24 @@ export default {
         return api.get('/coins')
         .then(res => {
             commit(FETCH_CHARGECOIN_LIST, res.data )
+        })
+    },
+    fetchPayCoinList({ commit }){
+        return api.get('/coins/pay')
+        .then(res => {
+            commit(FETCH_PAYCOIN_LIST, res.data )
+        })
+    },
+    fetchUserItemList({ commit }){
+        return api.get('/useritems')
+        .then(res => {
+            commit(FETCH_USERITEM_LIST, res.data )
+        })
+    },
+    fetchUserItem({ commit },useritemNo){
+        return api.get(`/useritems/${useritemNo}`)
+        .then(res => {
+            commit(FETCH_USERITEM, res.data )
         })
     }
 }

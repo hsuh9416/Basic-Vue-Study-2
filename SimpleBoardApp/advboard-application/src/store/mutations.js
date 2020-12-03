@@ -16,7 +16,10 @@ import {
     FETCH_NOTICE,
     FETCH_ITEM_LIST,
     FETCH_ITEM,
-    FETCH_CHARGECOIN_LIST
+    FETCH_CHARGECOIN_LIST,
+    FETCH_PAYCOIN_LIST,
+    FETCH_USERITEM_LIST,
+    FETCH_USERITEM
 } from './mutation-types'
 
 import api from '@/api'
@@ -89,5 +92,14 @@ export default {
     },
     [FETCH_CHARGECOIN_LIST](state, chargeCoins){
         state.chargeCoins = chargeCoins
+    },
+    [FETCH_PAYCOIN_LIST](state, payCoins){
+        state.payCoins = payCoins
+    },
+    [FETCH_USERITEM_LIST](state, userItems){
+        state.userItems = userItems
+    },
+    [FETCH_USERITEM](state, userItem){
+        state.userItem = userItem
     }
 }
