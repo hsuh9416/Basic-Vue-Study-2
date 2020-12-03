@@ -7,6 +7,7 @@ import { CodeClassRouters } from '@/router/codeclass'
 import { CodeDetailRouters} from '@/router/codedetail'
 import { BoardRouters } from '@/router/board'
 import { NoticeRouters } from '@/router/notice'
+import { ItemRouters } from '@/router/item'
 
 Vue.use(Router)
 
@@ -19,6 +20,7 @@ export default new Router({
     ...CodeClassRouters,
     ...CodeDetailRouters,
     ...BoardRouters,
-    ...NoticeRouters
+    ...NoticeRouters,
+    ...ItemRouters
   ]
 })

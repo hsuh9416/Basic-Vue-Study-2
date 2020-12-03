@@ -19,6 +19,9 @@
                         <td width="120">
                             <router-link :to="{ name : 'NoticeListPage' }">공지사항관리</router-link>
                         </td>
+                        <td width="120">
+                            <router-link :to="{ name : 'ItemListPage' }">상품관리</router-link>
+                        </td>
                     </template>
                 </template>
                 <td width="120">
@@ -26,6 +29,9 @@
                 </td>
                 <td width="120">
                     <router-link :to="{ name : 'NoticeListPage' }">공지사항</router-link>
+                </td>
+                <td width="120">
+                    <router-link :to="{ name : 'ItemListPage' }">상품</router-link>
                 </td>
             </tr>
         </table>
