@@ -1,5 +1,11 @@
 <template>
-    
+    <div align="center">
+        <h2>상품 목록</h2>
+        <template v-if="isAdmin">
+            <router-link :to="{ name: 'ItemRegisterPage' }">새로만들기</router-link>
+        </template>
+        <item-list :items="items"/>
+    </div>
 </template>
 
 <script>

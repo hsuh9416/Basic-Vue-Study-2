@@ -37,7 +37,7 @@ export const ItemRouters = [
         }
     },
     {
-        path: '/item/:itemNo',
+        path: '/item/:itemId',
         name: 'ItemReadPage',
         components: {
             header: MainHeader,
@@ -50,7 +50,7 @@ export const ItemRouters = [
         }
     },
     {
-        path: '/item/:itemNo/modify',
+        path: '/item/:itemId/modify',
         name: 'ItemModifyPage',
         components: {
             header: MainHeader,
