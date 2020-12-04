@@ -41,7 +41,7 @@ export default {
             api.delete(`/codegroups/${groupCode}`)
             .then( res => {
                 alert('삭제가 완료되었습니다.')
-                this.$router.push({ name: 'CodeClassListPage '})
+                this.$router.push({ name: 'CodeClassListPage'})
             })
             .catch( err => {
                 if (err.response.status === 401 ){

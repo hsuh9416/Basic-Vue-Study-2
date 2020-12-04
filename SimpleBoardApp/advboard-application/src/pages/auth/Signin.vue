@@ -19,11 +19,11 @@ export default {
                 alert('로그인 되었습니다.')
                 this.$router.push({name: 'Home'})
             }).catch(err => {
-                console.log(err.response.data.message)
+                console.log(err)
                 alert('로그인에 실패하였습니다.')
             })
         },
-        ...mapActions([signin])
+        ...mapActions(['signin'])
     }
 }
 </script>

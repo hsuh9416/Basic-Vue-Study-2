@@ -8,7 +8,7 @@
                 <th align="center" width="180">등록일시</th>
             </tr>
             
-            <tr v-if="!boards || (Array.isArray(Boards) && boards.length === 0)">
+            <tr v-if="!boards || (Array.isArray(boards) && boards.length === 0)">
                 <td colspan="4">
                     List is empty.
                 </td>
@@ -32,7 +32,7 @@
 export default {
     name: 'BoardList',
     props: {
-        boards:{
+        boards: {
             type: Array
         }
     }

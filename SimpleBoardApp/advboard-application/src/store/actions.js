@@ -31,7 +31,7 @@ import {
 } from './mutation-types'
 
 export default {
-    signin({ commit },payload){
+    signin ({ commit },payload){
         return api.post(`/api/authenticate?username=${payload.userid}&password=${payload.password}`,{
             username: payload.userid,
             password: payload.password
@@ -69,7 +69,7 @@ export default {
             commit(FETCH_CODECLASS, res.data)
         })
     }, 
-    fetchCodDetailList({ commit }){
+    fetchCodeDetailList({ commit }){
         return api.get('/codedetails')
         .then(res => {
             commit(FETCH_CODEDETAIL_LIST, res.data)
@@ -181,19 +181,19 @@ export default {
 
         formData.append('file',file)
 
-        return api.post(`/pds/upload`,formData,
-            {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
-        )
-        .then(res => {
-            commit(ADD_ATTACH, res.data )
+        return api.post('/pds/upload', formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         })
+      .then(res => {
+        commit(ADD_ATTACH, res.data)
+      })
         .catch(err =>{
+            console.log(err)
             alert('오류로 인하여 파일 첨부에 실패하였습니다!')
-            console.log(err.response.data.message)
+            
         })
     },
     resetAttach({ commit }){

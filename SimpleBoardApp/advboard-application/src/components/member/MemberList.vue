@@ -11,7 +11,7 @@
             </tr>
             <tr v-if="!members || (Array.isArray(members) && members.length === 0)">
                 <td colspan="6">
-                    List is empty.
+                List is empty.
                 </td>
             </tr>
 
@@ -43,11 +43,11 @@
 
 <script>
 export default {
-    name: 'MemberList',
-    props: {
-        members: {
-            type: Array
-        }
+  name: 'MemberList',
+  props: {
+    members: {
+      type: Array
     }
+  }
 }
 </script>

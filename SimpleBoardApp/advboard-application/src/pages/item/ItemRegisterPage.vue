@@ -23,14 +23,14 @@ export default {
             }
 
             let formData = new FormData()
-
-            formData.append('file', file)
-            formData.append('file2', previewFile)
-            formData.append('item', JSON.stringify(itemObject))
+		
+            formData.append("file", file)
+            formData.append("file2", previewFile)
+                formData.append("item",JSON.stringify(itemObject))
 
             api.post('/items', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
                 }
             }).then( res => {
                 alert('등록이 완료되었습니다.')
@@ -40,7 +40,7 @@ export default {
                 })
                 .catch( err => {
                     alert('오류로 인하여 등록에 실패하였습니다.')
-                    console.log(err.response.data.message)
+                    console.log(err)
                 })
             })
         }

@@ -1,7 +1,7 @@
 <template>
     <div alogn="center">
         <h2>최초관리자 등록</h2>
-        <admin-setup-form @submit="onSubmit"/>>
+        <admin-setup-form @submit="onSubmit"/>
     </div>
 </template>
 

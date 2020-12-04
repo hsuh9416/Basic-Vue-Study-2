@@ -14,7 +14,8 @@ export default {
     name: 'MemberListPage',
     components: { MemberList },
     computed: {
-        ...mapState(['members'])
+        ...mapState([ 'members' ])
+        
     },
     mounted(){
         this.fetchMemberList()

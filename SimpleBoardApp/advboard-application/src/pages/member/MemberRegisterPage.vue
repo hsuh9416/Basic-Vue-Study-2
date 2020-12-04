@@ -32,6 +32,7 @@ export default {
             api.post('/users',{userId, userName, userPw, job})
             .then(res =>{
                 alert('등록이 완료되었습니다.')
+                console.log(res.data)
                 this.$router.push({
                     name: 'MemberReadPage',
                     params: { userNo: res.data.userNo}

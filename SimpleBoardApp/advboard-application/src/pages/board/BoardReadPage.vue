@@ -39,7 +39,7 @@ export default {
     },
     methods: {
         onDelete(){
-            const { baordNo } = this.board
+            const { boardNo } = this.board
             api.delete(`/boards/${boardNo}`)
             .then( res =>{
                 alert('게시글이 정상적으로 삭제되었습니다.')

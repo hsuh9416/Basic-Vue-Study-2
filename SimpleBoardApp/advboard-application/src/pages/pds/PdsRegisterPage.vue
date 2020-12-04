@@ -41,8 +41,9 @@ export default {
                 })
             })
             .catch( err => {
+                console.log(err)
                 alert('오류로 인하여 등록에 실패하였습니다.')
-                console.log(err.response.data.messae)
+                
             })
         },
         onAttach( payload ){

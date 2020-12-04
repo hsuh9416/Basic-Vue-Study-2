@@ -16,7 +16,7 @@
             <tr>
                 <td>상품파일</td>
                 <td>
-                    <input type="text" @change="handleFileChange($event)">
+                    <input type="file" @change="handleFileChange($event)">
                 </td>
                 <td></td>
             </tr>

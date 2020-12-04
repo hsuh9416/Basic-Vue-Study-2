@@ -55,7 +55,7 @@ export default {
             this.$emit('submit', { itemName, description })
         },
         handleFileChange(evt){
-            this.file = evt.target.file[0]
+            this.file = evt.target.files[0]
             const { file } = this
             this.$emit('attach', { file })
         },

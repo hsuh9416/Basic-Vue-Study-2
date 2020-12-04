@@ -17,7 +17,7 @@ export default {
     components: { ItemList },
     computed: {
         ...mapState(['items']),
-        ...mapGatters(['isAdmin'])
+        ...mapGetters(['isAdmin'])
     },
     mounted(){
         this.fetchItemList()

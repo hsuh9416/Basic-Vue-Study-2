@@ -4,7 +4,7 @@
             <tr>
                 <td>그룹코드</td>
                 <td>
-                    <input v-modal="groupCode" type="text">
+                    <input v-model="groupCode" type="text">
                 </td>
             </tr>
             <tr>

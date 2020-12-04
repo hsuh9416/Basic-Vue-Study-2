@@ -1,7 +1,7 @@
 <template>
     <div align="center">
         <h2>코드 목록</h2>
-        <router-link :to="{name: 'CodeDetailRegisterPage'}">새로만들기</router-link>
+        <router-link :to="{name: 'CodeDetailRegisterPage' }">새로만들기</router-link>
         <code-detail-list :codeDetails="codeDetails"/>
     </div>
 </template>

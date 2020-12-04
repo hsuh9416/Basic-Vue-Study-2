@@ -27,7 +27,7 @@ export default {
         this.fetchCodeClass(this.groupCode)
         .catch( err => {
             console.log(err.response.data.message)
-            alert('오류로 인하여 수정에 실패하였습니다.')
+            alert('오류로 인하여 목록 호출에 실패하였습니다.')
             this.$router.back()
         })
     },
@@ -35,7 +35,8 @@ export default {
         ...mapActions(['fetchCodeClass']),
         onSubmit(payload){
             const { groupName } = payload
-            api.put(`/codegroups/${this.groupcode}`,{ groupName })
+            let code = isNaN(this.groupCode) ? this.groupCode : this.groupCode.toString()
+            api.put(`/codegroups/${code}`,{ groupName })
             .then( res => {
                 alert('수정이 완료되었습니다.')
                 this.$router.push({
@@ -50,7 +51,7 @@ export default {
                     } 
                     else {
                         console.log(err.response.data.message)
-                        alert('오류로 인하여 등록에 실패하였습니다.')
+                        alert('오류로 인하여 수정에 실패하였습니다.')
                     }
             })
         }

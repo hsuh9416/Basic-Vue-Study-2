@@ -35,9 +35,9 @@ export default {
     [SET_ACCESS_TOKEN](state, accessToken){
         if(accessToken){
             state.accessToken = accessToken
-
+            
             // HTTP 헤더에 토큰을 설정
-            api.defaults.header.common.Authorization = `Bearer ${accessToken}`
+            api.defaults.headers.common.Authorization = `Bearer ${accessToken}`
 
             // 쿠키에 엑세스토큰 저장
             Cookies.set('accessToken',accessToken, {expires: 1})
@@ -51,7 +51,7 @@ export default {
     [DESTROY_ACCESS_TOKEN](state){
         state.accessToken = ''
         // delete Object: 설정된 객체 변수를 삭제하는 로직
-        delete api.defaults.header.common.Authorization
+        delete api.defaults.headers.common.Authorization
         Cookies.remove('accessToken')
     },
     [DESTROY_MY_INFO](state){

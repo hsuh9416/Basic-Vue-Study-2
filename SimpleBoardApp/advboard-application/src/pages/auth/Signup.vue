@@ -1,7 +1,7 @@
 <template>
     <div align="center">
         <h2>회원가입</h2>
-        <signin-form @submit="onSubmit" :jobCodes="jobCodes"/>
+        <signup-form @submit="onSubmit" :jobCodes="jobCodes"/>
         <p><router-link :to="{ name: 'Signin' }">로그인</router-link></p>
     </div>
 </template>
@@ -13,7 +13,7 @@ import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'Signup',
-    components: { SignupFormSigninForm },
+    components: { SignupForm },
     computed: {
         ...mapState([
             'jobCodes'
@@ -22,7 +22,7 @@ export default {
     created(){
         this.fetchJobCodeList()
         .catch( err => {
-            console.log(err.response.data.message)
+            console.log(err)
             alert('오류로 인하여 직업 코드를 호출할 수 없었습니다.')
             this.$router.back()
         })
@@ -36,7 +36,7 @@ export default {
                 this.$router.push({ name: 'Signin' })
             })
             .catch( err => {
-                console.log(err.response.data.message)
+                console.log(err)
                 alert('오류로 인하여 회원가입에 실패하였습니다.')
             })
         },

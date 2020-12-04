@@ -24,11 +24,11 @@ export default {
                 })
             })
             .catch( err =>{
+                console.log(err)
                 if(err.response.status == 401){
                     alert('로그인이 필요합니다.')
                     this.$router.push({ name: 'Signin'})
                 } else{
-                    console.log(err.response.data.message)
                     alert('오류로 인하여 등록에 실패하였습니다.')
                 }
             })

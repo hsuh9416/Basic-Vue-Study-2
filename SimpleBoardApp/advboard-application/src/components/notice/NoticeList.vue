@@ -12,7 +12,7 @@
             <tr v-else v-for="notice in notices" :key="notice.noticeNo">
                 <td align="center">{{ notice.noticeNo }}</td>
                 <td align="left">
-                    <router-link :to="{name : 'NoticeReadPage', param: {noticeNo: notice.noticeNo.toString() }}">
+                    <router-link :to="{ name : 'NoticeReadPage', params: { noticeNo: notice.noticeNo.toString() }}">
                         {{ notice.title }}
                     </router-link>
                 </td>
