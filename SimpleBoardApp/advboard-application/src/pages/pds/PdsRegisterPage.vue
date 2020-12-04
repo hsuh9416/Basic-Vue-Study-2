@@ -27,14 +27,15 @@ export default {
             const { itemName, description } = payload
 
             const itemObject = {
-                itemName: itemName,
-                description: description,
-                file: this.attachments
+                itemName : itemName,
+                description : description,
+                files : this.attachments
             }
 
             api.post('/pds', itemObject)
             .then(res => {
                 alert('등록이 완료되었습니다.')
+                console.log(res)
                 this.$router.push({
                     name: 'PdsReadPage',
                     params: { itemId: res.data.itemId.toString() }

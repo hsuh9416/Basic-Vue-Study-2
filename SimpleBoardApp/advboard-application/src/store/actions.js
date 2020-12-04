@@ -176,26 +176,24 @@ export default {
             commit(FETCH_ATTACH_LIST,res.data)
         })
     },
-    addAttach({ commit },file){
+    addAttach ({ commit }, file) {
         let formData = new FormData()
-
-        formData.append('file',file)
-
-        return api.post('/pds/upload', formData,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        })
-      .then(res => {
-        commit(ADD_ATTACH, res.data)
-      })
-        .catch(err =>{
-            console.log(err)
-            alert('오류로 인하여 파일 첨부에 실패하였습니다!')
             
-        })
-    },
+        formData.append("file", file)
+          
+        return api.post('/pds/upload', formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            })
+          .then(res => {
+            commit(ADD_ATTACH, res.data)
+          })
+          .catch(err => {
+            alert(err.response.data.message)
+          })
+      },
     resetAttach({ commit }){
         commit(RESET_ATTACH)
     },
