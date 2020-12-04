@@ -1,4 +1,4 @@
-import Home from '@/views/Home'
+import Home from '@/pages/Home'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
