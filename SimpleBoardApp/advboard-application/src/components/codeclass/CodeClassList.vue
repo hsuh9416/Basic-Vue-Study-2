@@ -25,6 +25,7 @@
                     {{ codeClass.regDate }}
                 </td> 
             </tr>
+        </table>
     </div>
 </template>
 

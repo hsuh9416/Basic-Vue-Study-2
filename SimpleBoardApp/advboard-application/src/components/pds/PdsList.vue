@@ -20,6 +20,8 @@
                 </td>
                 <td align="right">{{ item.viewCnt }}</td>
             </tr>
+        </table>
+    </div>
 </template>
 
 <script>

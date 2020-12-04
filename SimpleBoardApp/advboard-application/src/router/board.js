@@ -2,10 +2,10 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import BoardRegisterPage from '@/views/board/BoardRegisterPage'
-import BoardListPage from '@/views/board/BoardListPage'
-import BoardModifyPage from '@/views/board/BoardModifyPage'
-import BoardReadPage from '@/views/board/BoardReadPage'
+import BoardRegisterPage from '@/pages/board/BoardRegisterPage'
+import BoardListPage from '@/pages/board/BoardListPage'
+import BoardModifyPage from '@/pages/board/BoardModifyPage'
+import BoardReadPage from '@/pages/board/BoardReadPage'
 
 export const BoardRouters = [
     {

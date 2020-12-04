@@ -7,7 +7,7 @@
         <p v-else>loading...</p>
         <router-link :to="{ name: 'MemberModifyPage', params: { userNo }}">편집</router-link>
         <button @click="onDelete">삭제</button>
-        <router-link :to="{ name: 'MemberListPage'}">목록<router-link>
+        <router-link :to="{ name: 'MemberListPage'}">목록</router-link>
     </div>
 
 </template>

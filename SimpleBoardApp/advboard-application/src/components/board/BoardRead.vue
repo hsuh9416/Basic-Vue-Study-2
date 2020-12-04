@@ -25,6 +25,8 @@
                     <textarea type="text" :value="board.content" readonly></textarea>
                 </td>
             </tr>
+        </table>
+    </div>
 </template>
 
 <script>

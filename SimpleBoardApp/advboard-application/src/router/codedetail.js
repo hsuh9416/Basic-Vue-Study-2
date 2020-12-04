@@ -2,12 +2,12 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import CodeDetailListPage from '@/views/codedetail/CodeDetailListPage'
-import CodeDetailRegisterPage from '@/views/codedetail/CodeDetailRegisterPage'
-import CodeDetailModifyPage from '@/views/codedetail/CodeDetailModifyPage'
-import CodeDetailReadPage from '@/views/codedetail/CodeDetailReadPage'
+import CodeDetailListPage from '@/pages/codedetail/CodeDetailListPage'
+import CodeDetailRegisterPage from '@/pages/codedetail/CodeDetailRegisterPage'
+import CodeDetailModifyPage from '@/pages/codedetail/CodeDetailModifyPage'
+import CodeDetailReadPage from '@/pages/codedetail/CodeDetailReadPage'
 
-export const CodeClassRouters = [
+export const CodeDetailRouters = [
 
     // 목록 화면
     {

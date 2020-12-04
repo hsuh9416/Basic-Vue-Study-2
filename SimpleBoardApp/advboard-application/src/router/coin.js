@@ -2,9 +2,9 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import CoinChargeListPage from '@/views/coin/CoinChargeListPage'
-import CoinChargeRegisterPage from '@/views/coin/CoinChargeRegisterPage'
-import CoinPayListPage from '@/views/coin/CoinPayListPage'
+import CoinChargeListPage from '@/pages/coin/CoinChargeListPage'
+import CoinChargeRegisterPage from '@/pages/coin/CoinChargeRegisterPage'
+import CoinPayListPage from '@/pages/coin/CoinPayListPage'
 
 export const CoinRouters = [
     {

@@ -2,8 +2,8 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import UserItemListPage from '@/views/useritem/UserItemListPage'
-import UserItemReadPage from '@/views/useritem/UserItemReadPage'
+import UserItemListPage from '@/pages/useritem/UserItemListPage'
+import UserItemReadPage from '@/pages/useritem/UserItemReadPage'
 
 export const UserItemRouters = [
     {

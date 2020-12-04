@@ -8,6 +8,7 @@
             <button @click="onDelete">삭제</button>
         </template>
         <router-link :to="{name: 'NoticeListPage'}">목록</router-link>
+    </div>
 </template>
 
 <script>

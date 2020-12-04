@@ -28,6 +28,7 @@
             <button type="submit">수정</button>
             <router-link :to="{ name: 'CodeDetailReadPage', params: { groupCode: codeDetail.groupCode, codeValue: codeDetail.codeValue }}">취소</router-link>
         </div>
+    </form>
 </template>
 
 <script>

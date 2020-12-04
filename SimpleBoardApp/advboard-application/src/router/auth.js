@@ -1,7 +1,7 @@
 import HomeHeader from '@/components/common/HomeHeader'
 import Footer from '@/components/common/Footer'
-import Signin from '@/views/auth/Signin'
-import Signup from '@/views/auth/Signup'
+import Signin from '@/pages/auth/Signin'
+import Signup from '@/pages/auth/Signup'
 
 export const AuthRouters = [
     {

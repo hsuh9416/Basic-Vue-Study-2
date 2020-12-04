@@ -5,7 +5,7 @@
             <button @click="onClickSignout">로그아웃</button>
         </div>
         <div v-else>
-            <router-link :to="{ name: 'Singin' }">로그인</router-link>
+            <router-link :to="{ name: 'Signin' }">로그인</router-link>
         </div>
     </div>
 </template>

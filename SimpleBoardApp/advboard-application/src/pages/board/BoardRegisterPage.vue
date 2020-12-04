@@ -2,6 +2,7 @@
     <div align="center">
         <h2>회원게시판 등록</h2>
         <board-register-form @submit="onSubmit"/>
+    </div>
 </template>
 
 <script>

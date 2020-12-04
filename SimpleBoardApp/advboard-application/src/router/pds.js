@@ -2,10 +2,10 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import PdsRegisterPage from '@/views/pds/PdsRegisterPage'
-import PdsListPage from '@/views/pds/PdsListPage'
-import PdsModifyPage from '@/views/pds/PdsModifyPage'
-import PdsReadPage from '@/views/pds/PdsReadPage'
+import PdsRegisterPage from '@/pages/pds/PdsRegisterPage'
+import PdsListPage from '@/pages/pds/PdsListPage'
+import PdsModifyPage from '@/pages/pds/PdsModifyPage'
+import PdsReadPage from '@/pages/pds/PdsReadPage'
 
 export const PdsRouters = [
     {

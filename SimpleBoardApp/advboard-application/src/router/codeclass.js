@@ -2,10 +2,10 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import CodeClassListPage from '@/views/codeclass/CodeClassListPage'
-import CodeClassRegisterPage from '@/views/codeclass/CodeClassRegisterPage'
-import CodeClassModifyPage from '@/views/codeclass/CodeClassModifyPage'
-import CodeClassReadPage from '@/views/codeclass/CodeClassReadPage'
+import CodeClassListPage from '@/pages/codeclass/CodeClassListPage'
+import CodeClassRegisterPage from '@/pages/codeclass/CodeClassRegisterPage'
+import CodeClassModifyPage from '@/pages/codeclass/CodeClassModifyPage'
+import CodeClassReadPage from '@/pages/codeclass/CodeClassReadPage'
 
 export const CodeClassRouters = [
 

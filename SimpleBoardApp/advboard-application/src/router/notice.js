@@ -2,10 +2,10 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import NoticeRegisterPage from '@/views/notice/NoticeRegisterPage'
-import NoticeListPage from '@/views/notice/NoticeListPage'
-import NoticeModifyPage from '@/views/notice/NoticeModifyPage'
-import NoticeReadPage from '@/views/notice/NoticeReadPage'
+import NoticeRegisterPage from '@/pages/notice/NoticeRegisterPage'
+import NoticeListPage from '@/pages/notice/NoticeListPage'
+import NoticeModifyPage from '@/pages/notice/NoticeModifyPage'
+import NoticeReadPage from '@/pages/notice/NoticeReadPage'
 
 
 export const NoticeRouters = [

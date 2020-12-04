@@ -2,11 +2,11 @@ import store from '@/store'
 import MainHeader from '@/components/common/MainHeader'
 import Footer from '@/components/common/Footer'
 import MenuBar from '@/components/common/MenuBar'
-import AdminSetupPage from '@/views/member/AdminSetupPage'
-import MemberRegisterPage from '@/views/member/MemberRegisterPage'
-import MemberListPage from '@/views/member/MemberListPage'
-import MemberModifyPage from '@/views/member/MemberModifyPage'
-import MemberReadPage from '@/views/member/MemberReadPage'
+import AdminSetupPage from '@/pages/member/AdminSetupPage'
+import MemberRegisterPage from '@/pages/member/MemberRegisterPage'
+import MemberListPage from '@/pages/member/MemberListPage'
+import MemberModifyPage from '@/pages/member/MemberModifyPage'
+import MemberReadPage from '@/pages/member/MemberReadPage'
 
 export const MemberRouters = [
     {
